@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <title>{{ 'appTitle'|trans }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="UTF-8" />
+    {% block stylesheets %}
+        {% stylesheets
+            'bundles/app/vendor/bootstrap/bootstrap.min.css' filter='cssrewrite'
+            'bundles/app/vendor/bootstrap/bootstrap-theme.min.css' filter='cssrewrite'
+            'bundles/app/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' filter='cssrewrite'
+            'bundles/app/vendor/flags/flags.css' filter='cssrewrite'
+            'bundles/app/css/googlefonts.css' filter='cssrewrite'
+            'bundles/app/css/style.css' filter='cssrewrite'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+    {% block javascripts %}
+        {% javascripts
+            'bundles/app/vendor/jquery/jquery-2.1.3.min.js'
+            'bundles/app/vendor/bootstrap/bootstrap.min.js'
+            'bundles/app/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js'
+            'bundles/app/vendor/bootbox/bootbox.min.js'
+            'bundles/app/js/main.js'
+
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+
+</head>
+<body>
+<div class="page">
+    <div class="container-fluid">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="pull-left" href="/"><img src="{{ asset('bundles/app/images/icon.png') }}" width="48" height="48"></a>
+                    <a class="pull-left navbar-brand" href="/">{{ 'appTitle'|trans }}</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-left">
+                        {% if app.user %}
+                            <li class="navbar-menu-item "><a href="">{{ 'menu.workouts'|trans }}</a></li>
+                            <li class="navbar-menu-item "><a href="">{{ 'menu.sports'|trans }}</a></li>
+                        {% endif %}
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="flag flag-{{ app.request.locale }}" src="images/blank.gif" alt="{{ app.request.locale }}">&nbsp; <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"><img class="flag flag-en" src="images/blank.gif" alt="EN"> english</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'pl'})) }}"><img class="flag flag-pl" src="images/blank.gif" alt="PL"> polski</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% if app.user %}
+                            <li class="navbar-menu-item"><a href="">{{ 'menu.logout'|trans }}</a></li>
+                        {% else %}
+                            <li class="navbar-menu-item"><a href="">{{ 'menu.login'|trans }}</a></li>
+                            <li class="navbar-menu-item"><a href="">{{ 'menu.register'|trans }}</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    {% block body %}
+    {% endblock %}
+</div>
+</body>
+</html>

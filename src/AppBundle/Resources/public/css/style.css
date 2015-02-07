@@ -1,0 +1,153 @@
+/* background */
+
+html {
+    /* from free stock http://www.morguefile.com/archive/display/898298 */
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:100%;
+}
+body {
+    background-color: transparent;
+    padding-top:50px;
+    height:100%;
+}
+
+.page{
+    height:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: Montserrat, Verdana;
+}
+
+.header-buttons{
+    padding-top:10px;
+}
+
+
+/* home page */
+
+.homepage-text-container {
+
+    left: 0;
+    line-height: 64pt;
+    margin: auto;
+    margin-top: -32pt;
+    position: absolute;
+    text-align:center;
+    top: 50%;
+    width: 100%;
+    background-color: rgba(54, 25, 25, .5);
+}
+
+.homepage-text-container > h1{
+    font-size:48pt;
+    font-shadow:rgb(0, 0, 0) -1px 0px 1px;
+    color:white;
+    font-weight:700;
+}
+
+.centered-opacity-form {
+    background-color: rgba(255, 255, 255, .9);
+    border-radius: 5px;
+    padding:20px;
+    margin-top:20px;
+}
+
+.centered-form-title{
+    margin-top:0px;
+    text-align:center;
+}
+
+/* flag-en = flag-us */
+.flag.flag-en {
+    background-position: -144px -154px;
+}
+
+/* main container */
+@media (min-width: 767px) {
+    .container.filled {
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 5px;
+        padding:20px 20px 20px 20px;
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+}
+@media (max-width: 767px) {
+    .container.filled {
+        background-color: rgba(255, 255, 255, 1);
+        min-height:100%;
+    }
+}
+
+.container.transparent{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+
+/* tables */
+.table > tbody > tr > td, .table > thead > tr > td{
+    vertical-align:middle;
+}
+
+/* tcx import */
+
+.tcx-upload-row{
+    padding-bottom:5px;
+}
+
+/* spinner */
+
+.spinner {
+    width: 15px;
+    height: 15px;
+    position: relative;
+    text-align: center;
+    display:inline-block;
+
+    -webkit-animation: spinner-rotate 2.0s infinite linear;
+    animation: spinner-rotate 2.0s infinite linear;
+}
+
+.spinner > .dot1, .spinner > .dot2 {
+    width: 60%;
+    height: 60%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-color: #333;
+    border-radius: 100%;
+
+    -webkit-animation: spinner-bounce 2.0s infinite ease-in-out;
+    animation: spinner-bounce 2.0s infinite ease-in-out;
+}
+
+.spinner >.dot2 {
+    top: auto;
+    bottom: 0px;
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes spinner-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes spinner-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes spinner-bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes spinner-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+      }
+}

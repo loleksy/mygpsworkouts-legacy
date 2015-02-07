@@ -1,0 +1,14 @@
+parameters:
+  database_path: null
+  locale: "en"
+  database_name: "my_gps_workouts"
+  database_host: "127.0.0.1"
+  secret: "9ff2be22794ab09a2318acbdfa324547bd0377e8"
+  mailer_password: null
+  database_port: null
+  database_driver: "pdo_mysql"
+  database_password: "my_gps_workouts"
+  mailer_user: null
+  mailer_host: "127.0.0.1"
+  mailer_transport: "smtp"
+  database_user: "my_gps_workouts"
