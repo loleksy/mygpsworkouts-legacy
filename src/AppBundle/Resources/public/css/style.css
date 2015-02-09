@@ -27,6 +27,19 @@ h1,h2,h3,h4,h5,h6{
     padding-top:10px;
 }
 
+/* navbar profile dropdown */
+
+.navbar-profile-dropdown
+{
+    padding:10px;
+    width:400px;
+}
+
+.navbar-profile-dropdown-icon
+{
+    font-size: 87px;
+}
+
 
 /* home page */
 

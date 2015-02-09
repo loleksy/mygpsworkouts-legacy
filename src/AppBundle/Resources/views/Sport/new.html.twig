@@ -1,0 +1,15 @@
+{% extends 'AppBundle::layouts/filled.html.twig' %}
+
+{% block content -%}
+    <h1>Sport creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('sport') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
