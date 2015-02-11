@@ -50,7 +50,9 @@
                     <ul class="nav navbar-nav navbar-left">
                         {% if app.user %}
                             <li class="navbar-menu-item "><a href="">{{ 'menu.workouts'|trans }}</a></li>
-                            <li class="navbar-menu-item "><a href="">{{ 'menu.sports'|trans }}</a></li>
+                            <li class="navbar-menu-item {% if app.request.attributes.get('_route') starts with 'sport' %} active {% endif %}">
+                                <a href="{{ path('sport') }}">{{ 'menu.sports'|trans }}</a>
+                            </li>
                         {% endif %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

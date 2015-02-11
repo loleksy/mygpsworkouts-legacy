@@ -3,12 +3,19 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Sport
  *
  * @ORM\Table(name="sport", indexes={@ORM\Index(name="fk_sports_users_idx", columns={"user_id"})})
  * @ORM\Entity
+ * @UniqueEntity(
+ *     fields={"user", "name"},
+ *     errorPath="name",
+ *     message="sport.name.taken"
+ * )
  */
 class Sport
 {
@@ -16,6 +23,7 @@ class Sport
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @Assert\NotNull()
      */
     protected $name;
 
@@ -23,6 +31,7 @@ class Sport
      * @var string
      *
      * @ORM\Column(name="display_name", type="string", length=255, nullable=true)
+     * @Assert\NotNull()
      */
     protected $displayName;
 
@@ -30,6 +39,7 @@ class Sport
      * @var string
      *
      * @ORM\Column(name="color", type="string", length=7, nullable=true)
+     * @Assert\NotNull()
      */
     protected $color;
 
@@ -38,7 +48,7 @@ class Sport
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 

@@ -1,15 +1,14 @@
 {% extends 'AppBundle::layouts/filled.html.twig' %}
 
 {% block content -%}
-    <h1>Sport creation</h1>
+    <h1>{{ 'sport.form.create.title'|trans }} </h1>
 
-    {{ form(form) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-lg btn-success" type="submit">
+        <span class="glyphicon glyphicon-pencil"></span>
+        {{ 'sport.form.save.label'| trans }}
+    </button>
+    {{ form_end(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('sport') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}

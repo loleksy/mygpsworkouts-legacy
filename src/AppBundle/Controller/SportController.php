@@ -29,7 +29,7 @@ class SportController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Sport')->findAll();
+        $entities = $em->getRepository('AppBundle:Sport')->findBy(array('user' => $this->getUser()));
 
         $deleteForms = array();
         foreach ($entities as $entity) {
@@ -53,13 +53,11 @@ class SportController extends Controller
         $entity = new Sport();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('sport_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('sport'));
         }
 
         return array(
@@ -77,12 +75,10 @@ class SportController extends Controller
      */
     private function createCreateForm(Sport $entity)
     {
-        $form = $this->createForm(new SportType(), $entity, array(
+        $form = $this->createForm(new SportType($this->getUser()), $entity, array(
             'action' => $this->generateUrl('sport_create'),
             'method' => 'POST',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -106,31 +102,6 @@ class SportController extends Controller
     }
 
     /**
-     * Finds and displays a Sport entity.
-     *
-     * @Route("/{id}", name="sport_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('AppBundle:Sport')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Sport entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
      * Displays a form to edit an existing Sport entity.
      *
      * @Route("/{id}/edit", name="sport_edit")
@@ -148,12 +119,10 @@ class SportController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form'   => $editForm->createView(),
         );
     }
 
@@ -166,12 +135,10 @@ class SportController extends Controller
     */
     private function createEditForm(Sport $entity)
     {
-        $form = $this->createForm(new SportType(), $entity, array(
+        $form = $this->createForm(new SportType($this->getUser()), $entity, array(
             'action' => $this->generateUrl('sport_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -192,7 +159,6 @@ class SportController extends Controller
             throw $this->createNotFoundException('Unable to find Sport entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
@@ -204,8 +170,7 @@ class SportController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form'   => $editForm->createView(),
         );
     }
     /**
@@ -246,7 +211,7 @@ class SportController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('sport_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'delete'))
             ->getForm()
         ;
     }

@@ -3,18 +3,18 @@
 {% block content -%}
 
     <div class="panel-heading">
-        <h2 class="pull-left">{{ 'messages.sport.list.title'|trans }}</h2>
+        <h2 class="pull-left">{{ 'sport.list.title'|trans }}</h2>
         <div class="pull-right header-buttons">
         <a href="{{ path('sport_new') }}" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-plus"></span>
-            {{ 'messages.sport.list.add'|trans }}
+            {{ 'sport.list.add'|trans }}
         </a>
         </div>
     </div>
     <div class="clearfix"></div>
     <br>
     <div class="well">
-        {{ 'messages.sport.list.help'|trans }}
+        {{ 'sport.list.help'|trans }}
     </div>
 
     {%  if entities %}
@@ -22,10 +22,10 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>{{ 'messages.sport.columns.name.label'|trans }}</th>
-                    <th>{{ 'messages.sport.columns.displayName.label'|trans  }}</th>
-                    <th>{{ 'messages.sport.columns.color.label'|trans  }}</th>
-                    <th colspan="2">{{ 'messages.actionHeader'|trans  }}</th>
+                    <th>{{ 'sport.columns.name.label'|trans }}</th>
+                    <th>{{ 'sport.columns.displayName.label'|trans  }}</th>
+                    <th>{{ 'sport.columns.color.label'|trans  }}</th>
+                    <th colspan="2">{{ 'actionHeader'|trans  }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
                         <td>{{ entity.displayName }}</td>
                         <td style="background-color:{{ entity.color }}"></td>
                         <td>
-                            <a data-toggle="tooltip" data-placement="left" title="{{ 'messages.edit'|trans }}" class="btn btn-sm btn-info" href="{{ path('sport_edit', { 'id': entity.id }) }}">
+                            <a data-toggle="tooltip" data-placement="left" title="{{ 'edit'|trans }}" class="btn btn-sm btn-info" href="{{ path('sport_edit', { 'id': entity.id }) }}">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </td>
@@ -44,7 +44,7 @@
                                 <input type="hidden" name="_method" value="DELETE" />
                                 {{ form_widget(deleteForms[entity.id]._token) }}
 
-                                <button type="submit" name="form[submit]" data-submit-confirm-text="{{ 'messages.confirmText'|trans }}" data-toggle="tooltip" data-placement="left" title="{{ 'messages.delete'|trans }}" class="btn btn-sm btn-danger">
+                                <button type="submit" name="form[submit]" data-submit-confirm-text="{{ 'confirmText'|trans }}" data-toggle="tooltip" data-placement="left" title="{{ 'delete'|trans }}" class="btn btn-sm btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </form>
@@ -55,7 +55,7 @@
             </table>
         </div>
     {%  else %}
-        {{ 'messages.noResults'|trans }}
+        {{ 'noResults'|trans }}
     {% endif %}
 
 
