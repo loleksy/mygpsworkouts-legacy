@@ -3,7 +3,14 @@
 {% block body %}
     <div class="container filled">
         <div class="row">
-            <!-- TODO bootstrap message !-->
+            {# flash messages as bootstrap alerts #}
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    <div class="alert alert-{{ label }}">
+                        {{ flash }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
         </div>
         {% block content %}
         {% endblock %}

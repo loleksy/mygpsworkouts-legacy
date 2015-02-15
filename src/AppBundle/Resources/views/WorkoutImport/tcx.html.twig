@@ -1,0 +1,93 @@
+{% extends 'AppBundle::layouts/filled.html.twig' %}
+
+{% block javascripts %}
+    {{- parent() -}}
+    {% javascripts
+        "bundles/app/vendor/dropzone/dropzone.js"
+        "bundles/app/js/plugins/tcx-import-dropzone.js"
+    %}
+        <script type="text/javascript" src="{{ asset_url }}" ></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $(function(){
+            var tcxImport = new TcxImport({
+                'uploadUrl': '{{ path('workout_import_tcx_ajax_upload') }}'
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="panel-heading">
+        <h2 class="pull-left">{{ 'workout.import.tcx.title'|trans }}</h2>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <div class="well">
+        {{ 'workout.import.tcx.help'|trans }}
+    </div>
+
+    <div id="actions" class="row">
+        <div class="col-lg-7">
+            <!-- The fileinput-button span is used to style the file input field as button -->
+            <div id="action-buttons" class="pull-left">
+                    <span class=" btn btn-success fileinput-button dz-clickable">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>{{ 'workout.import.tcx.addFiles'|trans }}</span>
+                    </span>
+                <button type="submit" class="btn btn-primary start" style="display:none;">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>{{ 'messages.workout.import.tcx.startUpload'|trans }}</span>
+                </button>
+            </div>
+            <div id="current-file" class="pull-left">
+
+            </div>
+            <div id="upload-completed-actions" style="display:none;">
+                <a href="" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    {{ 'workout.import.tcx.uploadMore'|trans }}
+                </a>
+                <a href="" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    {{ 'workout.import.tcx.backToList'|trans }}
+                </a>
+            </div>
+
+        </div>
+        <div class="col-lg-5">
+            <!-- The global file processing state -->
+            <span class="fileupload-process">
+              <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress=""></div>
+              </div>
+            </span>
+        </div>
+    </div>
+
+    <div class="table table-striped" class="files" id="previews">
+
+        <div id="dropzone-template" class="file-row">
+            <!-- This is used as the file preview template -->
+            <div>
+                <div class="tcx-upload-row">
+                    <span class="name" data-dz-name></span>
+                    <button data-dz-remove class="btn btn-danger delete btn-xs">
+                        <i class="glyphicon glyphicon-trash"></i>
+                        <span>{{ 'delete'|trans }}</span>
+                    </button>
+                    <div class="spinner" style="display:none;">
+                        <div class="dot1"></div>
+                        <div class="dot2"></div>
+                    </div>
+                        <span class="server-response-container">
+
+                        </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

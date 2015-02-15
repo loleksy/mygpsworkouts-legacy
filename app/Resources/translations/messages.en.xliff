@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2015-02-14T11:43:57Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="f6fdbe48dc54dd86f63097a03bd24094dedd713a" resname="Delete">
+        <jms:reference-file line="214">AppBundle/Controller/SportController.php</jms:reference-file>
+        <source>Delete</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="cb38c7f90fbf9b787d1e651eff5b8e5e65f3df2f" resname="actionHeader">
+        <jms:reference-file line="28">views/Sport/index.html.twig</jms:reference-file>
+        <source>actionHeader</source>
+        <target>Action</target>
+      </trans-unit>
+      <trans-unit id="9a4c45f23391ea34672fbf108726a4728ae1f73a" resname="appTitle">
+        <jms:reference-file line="4">views/default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">views/layouts/base.html.twig</jms:reference-file>
+        <jms:reference-file line="46">views/layouts/base.html.twig</jms:reference-file>
+        <source>appTitle</source>
+        <target>My GPS Workouts</target>
+      </trans-unit>
+      <trans-unit id="70e9bbe0f86e6cc800073b80872c2d61bcf4ba77" resname="confirmText">
+        <jms:reference-file line="47">views/Sport/index.html.twig</jms:reference-file>
+        <source>confirmText</source>
+        <target>Are you sure?</target>
+      </trans-unit>
+      <trans-unit id="9485989ff514b5106b7738850fd73c23e8c1e3f7" resname="delete">
+        <jms:reference-file line="47">views/Sport/index.html.twig</jms:reference-file>
+        <jms:reference-file line="87">AppBundle/Controller/WorkoutController.php</jms:reference-file>
+        <jms:reference-file line="215">AppBundle/Controller/SportController.php</jms:reference-file>
+        <source>delete</source>
+        <target>delete</target>
+      </trans-unit>
+      <trans-unit id="9ead47a82a0d25985f22f10651d1f93b3abba317" resname="edit">
+        <jms:reference-file line="38">views/Sport/index.html.twig</jms:reference-file>
+        <source>edit</source>
+        <target>edit</target>
+      </trans-unit>
+      <trans-unit id="b3f7541ca9f9ad706dc76e4adc533e684d1f19be" resname="form.sport.color">
+        <jms:reference-file line="30">AppBundle/Form/SportType.php</jms:reference-file>
+        <source>form.sport.color</source>
+        <target>Color</target>
+      </trans-unit>
+      <trans-unit id="4603251ddc2d587964051a399983febb551fb9a3" resname="form.sport.displayName">
+        <jms:reference-file line="29">AppBundle/Form/SportType.php</jms:reference-file>
+        <source>form.sport.displayName</source>
+        <target>Display Name</target>
+      </trans-unit>
+      <trans-unit id="646858791a0f579fa1f28371be66ee33d31c59c5" resname="form.sport.name">
+        <jms:reference-file line="28">AppBundle/Form/SportType.php</jms:reference-file>
+        <source>form.sport.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="bbde645fd6a62fe4f4b9b2e0241bf2d565997432" resname="menu.login">
+        <jms:reference-file line="124">views/layouts/base.html.twig</jms:reference-file>
+        <source>menu.login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="882df371590f3c425ef80e9bf8520babae2f0373" resname="menu.logout">
+        <jms:reference-file line="111">views/layouts/base.html.twig</jms:reference-file>
+        <source>menu.logout</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="e49285d223714b108cb8049e2b22b81393f8fd7c" resname="menu.profile">
+        <jms:reference-file line="96">views/layouts/base.html.twig</jms:reference-file>
+        <source>menu.profile</source>
+        <target>Profile</target>
+      </trans-unit>
+      <trans-unit id="c54988667a0283622582847947df338754cc54e4" resname="menu.register">
+        <jms:reference-file line="127">views/layouts/base.html.twig</jms:reference-file>
+        <source>menu.register</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="c786979f596b7410e239b0531bcba88bb2f476d0" resname="menu.sports">
+        <jms:reference-file line="56">views/layouts/base.html.twig</jms:reference-file>
+        <source>menu.sports</source>
+        <target>Sports</target>
+      </trans-unit>
+      <trans-unit id="290dd7d64271b722a3e58a71b83ac8829ea22ea0" resname="menu.workouts">
+        <jms:reference-file line="53">views/layouts/base.html.twig</jms:reference-file>
+        <source>menu.workouts</source>
+        <target>Workouts</target>
+      </trans-unit>
+      <trans-unit id="68a2a1d87dae5fdf893cb426e67e30eb2ff3a939" resname="messages.workout.import.tcx.startUpload">
+        <jms:reference-file line="23">views/WorkoutImport/tcx.html.twig</jms:reference-file>
+        <source>messages.workout.import.tcx.startUpload</source>
+        <target>Start upload</target>
+      </trans-unit>
+      <trans-unit id="35584caeff520a00fbf68f5ae1de96cbe81d81fd" resname="noResults">
+        <jms:reference-file line="35">views/Workout/index.html.twig</jms:reference-file>
+        <jms:reference-file line="58">views/Sport/index.html.twig</jms:reference-file>
+        <source>noResults</source>
+        <target>No results</target>
+      </trans-unit>
+      <trans-unit id="8ee81c2814d59842a3bd2d08984cfbc4eaa8cef9" resname="sport.columns.color.label">
+        <jms:reference-file line="27">views/Sport/index.html.twig</jms:reference-file>
+        <source>sport.columns.color.label</source>
+        <target>Color</target>
+      </trans-unit>
+      <trans-unit id="257b696316767c18e028ca90755caac9d2b09ad8" resname="sport.columns.displayName.label">
+        <jms:reference-file line="26">views/Sport/index.html.twig</jms:reference-file>
+        <source>sport.columns.displayName.label</source>
+        <target>Display name</target>
+      </trans-unit>
+      <trans-unit id="c2fb51520a54f7ba9b0fdda47b28ccbe45e7d7f9" resname="sport.columns.name.label">
+        <jms:reference-file line="25">views/Sport/index.html.twig</jms:reference-file>
+        <source>sport.columns.name.label</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="5fc5c8f872e25f8c95e126c2ff55c4880258279f" resname="sport.flash.created">
+        <jms:reference-file line="60">AppBundle/Controller/SportController.php</jms:reference-file>
+        <source>sport.flash.created</source>
+        <target>Sport was successfully created.</target>
+      </trans-unit>
+      <trans-unit id="9e0f576c9ccadf4bb02ce4399de611b66f99fffe" resname="sport.flash.deleted">
+        <jms:reference-file line="197">AppBundle/Controller/SportController.php</jms:reference-file>
+        <source>sport.flash.deleted</source>
+        <target>Sport was successfully deleted.</target>
+      </trans-unit>
+      <trans-unit id="a67a26e5d3a3d3b63731f6bedd8cc10a27a8f264" resname="sport.flash.updated">
+        <jms:reference-file line="168">AppBundle/Controller/SportController.php</jms:reference-file>
+        <source>sport.flash.updated</source>
+        <target>Sport was successfully updated.</target>
+      </trans-unit>
+      <trans-unit id="b4688599e576a215c79c923d46b127652c01d7bb" resname="sport.form.color.label">
+        <jms:reference-file line="35">AppBundle/Form/SportType.php</jms:reference-file>
+        <source>sport.form.color.label</source>
+        <target>Color</target>
+      </trans-unit>
+      <trans-unit id="4b3bb926fe97b9f67f81cade353dda0bca8ff928" resname="sport.form.create.title">
+        <jms:reference-file line="4">views/Sport/new.html.twig</jms:reference-file>
+        <source>sport.form.create.title</source>
+        <target>New sport</target>
+      </trans-unit>
+      <trans-unit id="52042f88a9514adfd0869ee0c8c730a4d51eb361" resname="sport.form.displayName.label">
+        <jms:reference-file line="32">AppBundle/Form/SportType.php</jms:reference-file>
+        <source>sport.form.displayName.label</source>
+        <target>Display name</target>
+      </trans-unit>
+      <trans-unit id="2691d672edfbb26cba815d0b1cc2c01fa175bbf9" resname="sport.form.edit.title">
+        <jms:reference-file line="4">views/Sport/edit.html.twig</jms:reference-file>
+        <source>sport.form.edit.title</source>
+        <target>Edit sport</target>
+      </trans-unit>
+      <trans-unit id="f94149c5d9dc662010fa79bc1347d45678cccefe" resname="sport.form.name.label">
+        <jms:reference-file line="29">AppBundle/Form/SportType.php</jms:reference-file>
+        <source>sport.form.name.label</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="c25e584872b76b7bd91f2696a75047e570ea2e8b" resname="sport.form.save.label">
+        <jms:reference-file line="10">views/Sport/new.html.twig</jms:reference-file>
+        <jms:reference-file line="10">views/Sport/edit.html.twig</jms:reference-file>
+        <source>sport.form.save.label</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="9af63d26570fc99e79ecbe0a29a2249484e00bb3" resname="sport.list.add">
+        <jms:reference-file line="10">views/Sport/index.html.twig</jms:reference-file>
+        <source>sport.list.add</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit id="15119133d504324a19b669a2805a4f47181bfcc8" resname="sport.list.help">
+        <jms:reference-file line="17">views/Sport/index.html.twig</jms:reference-file>
+        <source>sport.list.help</source>
+        <target>You don't have to create sports manually. They will be generated if necessary during workout import.</target>
+      </trans-unit>
+      <trans-unit id="8f75fc6fa157a74b6891e80cb5fa77f9ca67aa19" resname="sport.list.title">
+        <jms:reference-file line="6">views/Sport/index.html.twig</jms:reference-file>
+        <source>sport.list.title</source>
+        <target>Sports</target>
+      </trans-unit>
+      <trans-unit id="be22bb2728a3021a5d3c15d01209859572fccf0d" resname="workout.import.tcx.addFiles">
+        <jms:reference-file line="19">views/WorkoutImport/tcx.html.twig</jms:reference-file>
+        <source>workout.import.tcx.addFiles</source>
+        <target>Add files...</target>
+      </trans-unit>
+      <trans-unit id="4a676d149ac23dd39342d90742fb932c22124666" resname="workout.import.tcx.backToList">
+        <jms:reference-file line="36">views/WorkoutImport/tcx.html.twig</jms:reference-file>
+        <source>workout.import.tcx.backToList</source>
+        <target>Go back to the list</target>
+      </trans-unit>
+      <trans-unit id="a505b4bbf19096db2088a201dab35c4db12a72f5" resname="workout.import.tcx.help">
+        <jms:reference-file line="10">views/WorkoutImport/tcx.html.twig</jms:reference-file>
+        <source>workout.import.tcx.help</source>
+        <target>TCX is an XML file introduced by Garmin. Only files exported by Endomondo was tested. Full compatibility is not guaranteed.</target>
+      </trans-unit>
+      <trans-unit id="9bd98747fa8de8d272f025542966ded8a75ca6aa" resname="workout.import.tcx.title">
+        <jms:reference-file line="5">views/WorkoutImport/tcx.html.twig</jms:reference-file>
+        <source>workout.import.tcx.title</source>
+        <target>Import TCX files</target>
+      </trans-unit>
+      <trans-unit id="61e61d2acee89c053d5e56936387063a3f6d9fd6" resname="workout.import.tcx.uploadMore">
+        <jms:reference-file line="32">views/WorkoutImport/tcx.html.twig</jms:reference-file>
+        <source>workout.import.tcx.uploadMore</source>
+        <target>Upload more...</target>
+      </trans-unit>
+      <trans-unit id="dd390afb163bbfd1e81eaf49e7a92d25cb07d8d3" resname="workout.list.tcxImport">
+        <jms:reference-file line="10">views/Workout/index.html.twig</jms:reference-file>
+        <source>workout.list.tcxImport</source>
+        <target>Import from TCX files</target>
+      </trans-unit>
+      <trans-unit id="a09289212caf6c3d2fd0ce910d7f0e91648a290b" resname="workout.list.title">
+        <jms:reference-file line="6">views/Workout/index.html.twig</jms:reference-file>
+        <source>workout.list.title</source>
+        <target>Workouts</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

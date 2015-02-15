@@ -7,3 +7,9 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    authentication_entry_point:
+        class: AppBundle\Service\AuthenticationEntryPointService
+        arguments: [ @router ]
+    app.workout_import:
+        class:  AppBundle\Service\WorkoutImportService
+        arguments: ["@doctrine.orm.entity_manager"]

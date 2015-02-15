@@ -7,13 +7,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use AppBundle\Entity\Sport;
 use AppBundle\Form\SportType;
+
+
 
 /**
  * Sport controller.
  *
  * @Route("/sport")
+ * @Security("has_role('ROLE_USER')")
  */
 class SportController extends Controller
 {
@@ -57,6 +61,7 @@ class SportController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans('sport.flash.created'));
             return $this->redirect($this->generateUrl('sport'));
         }
 
@@ -155,7 +160,7 @@ class SportController extends Controller
 
         $entity = $em->getRepository('AppBundle:Sport')->find($id);
 
-        if (!$entity) {
+        if (!$entity || !$entity->isOwnedBy($this->getUser())) {
             throw $this->createNotFoundException('Unable to find Sport entity.');
         }
 
@@ -164,8 +169,8 @@ class SportController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
-            return $this->redirect($this->generateUrl('sport_edit', array('id' => $id)));
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans('sport.flash.updated'));
+            return $this->redirect($this->generateUrl('sport'));
         }
 
         return array(
@@ -188,12 +193,12 @@ class SportController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AppBundle:Sport')->find($id);
 
-            if (!$entity) {
+            if (!$entity || !$entity->isOwnedBy($this->getUser())) {
                 throw $this->createNotFoundException('Unable to find Sport entity.');
             }
-
             $em->remove($entity);
             $em->flush();
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans('sport.flash.deleted'));
         }
 
         return $this->redirect($this->generateUrl('sport'));

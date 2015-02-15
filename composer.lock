@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f30e91518878a75964607863979acd86",
+    "hash": "bdad1d5f907759d1c4807efc043fcb68",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1303,6 +1303,53 @@
             "time": "2014-12-12 05:04:05"
         },
         {
+            "name": "mjaschen/phpgeo",
+            "version": "0.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mjaschen/phpgeo.git",
+                "reference": "e11cba9ee31ef288c96359ebcd3509da43dd2140"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mjaschen/phpgeo/zipball/e11cba9ee31ef288c96359ebcd3509da43dd2140",
+                "reference": "e11cba9ee31ef288c96359ebcd3509da43dd2140",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Location": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus T. Jaschen",
+                    "email": "mjaschen@gmail.com",
+                    "homepage": "https://mj.gs/"
+                }
+            ],
+            "description": "Simple Geo Library",
+            "homepage": "https://github.com/mjaschen/phpgeo",
+            "keywords": [
+                "bounds",
+                "calculation",
+                "coordinate",
+                "distance",
+                "ellipsoid",
+                "geo",
+                "gis"
+            ],
+            "time": "2014-12-17 17:58:10"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.12.0",
             "source": {
@@ -2066,17 +2113,17 @@
     "packages-dev": [
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd"
+                "reference": "4b09746520a826a7bf34a466ba31c7d8740fef7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/9e23fc3de265ae013690d84aab98e7a84f46edcd",
-                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/4b09746520a826a7bf34a466ba31c7d8740fef7e",
+                "reference": "4b09746520a826a7bf34a466ba31c7d8740fef7e",
                 "shasum": ""
             },
             "require": {
@@ -2110,7 +2157,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2015-01-13 07:33:46"
+            "time": "2015-02-11 07:21:23"
         }
     ],
     "aliases": [],

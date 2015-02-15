@@ -49,7 +49,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-left">
                         {% if app.user %}
-                            <li class="navbar-menu-item "><a href="">{{ 'menu.workouts'|trans }}</a></li>
+                            <li class="navbar-menu-item {% if app.request.attributes.get('_route') starts with 'workout' %} active {% endif %}">
+                                <a href="{{ path('workout') }}">{{ 'menu.workouts'|trans }}</a>
+                            </li>
                             <li class="navbar-menu-item {% if app.request.attributes.get('_route') starts with 'sport' %} active {% endif %}">
                                 <a href="{{ path('sport') }}">{{ 'menu.sports'|trans }}</a>
                             </li>
@@ -57,15 +59,20 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="flag flag-{{ app.request.locale }}" src="images/blank.gif" alt="{{ app.request.locale }}">&nbsp;
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img class="flag flag-{{ app.request.locale }}" src="{{ asset('bundles/app/images/blank.gif') }}" alt="{{ app.request.locale }}">&nbsp;
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"><img class="flag flag-en" src="images/blank.gif" alt="EN"> english</a>
+                                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
+                                        <img class="flag flag-en" src="{{ asset('bundles/app/images/blank.gif') }}" alt="EN">english
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'pl'})) }}"><img class="flag flag-pl" src="images/blank.gif" alt="PL"> polski</a>
+                                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'pl'})) }}">
+                                        <img class="flag flag-pl" src="{{ asset('bundles/app/images/blank.gif') }}" alt="PL"> polski
+                                    </a>
                                 </li>
                             </ul>
                         </li>

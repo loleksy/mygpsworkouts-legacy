@@ -1,0 +1,24 @@
+'This name is already in use':
+    '': 'This name is already in use.'
+
+fos_user:
+    email:
+        already_used: 'The email is already used'
+        blank: 'Please enter an email'
+        invalid: 'The email is not valid'
+        long: '[-Inf,Inf]The email is too long'
+        short: '[-Inf,Inf]The email is too short'
+
+    password:
+        blank: 'Please enter a password'
+        short: '[-Inf,Inf]The password is too short'
+
+    username:
+        already_used: 'The username is already used'
+        blank: 'Please enter a username'
+        long: '[-Inf,Inf]The username is too long'
+        short: '[-Inf,Inf]The username is too short'
+
+sport:
+    name:
+        taken: sport.name.taken

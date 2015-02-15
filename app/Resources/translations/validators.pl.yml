@@ -1,0 +1,24 @@
+'This name is already in use':
+    '': "Podana nazwa już\_istnieje."
+
+fos_user:
+    email:
+        already_used: 'Podany email jest zajęty'
+        blank: 'Proszę podać adres email'
+        invalid: 'Podany adres email jest nieprawidłowy'
+        long: '[-Inf,Inf]Podany email jest za długi'
+        short: '[-Inf,Inf]Podany email jest za krótki'
+
+    password:
+        blank: 'Proszę podać hasło'
+        short: '[-Inf,Inf]Podane hasło jest za krótkie'
+
+    username:
+        already_used: 'Ta nazwa użytkownika jest już zajęta'
+        blank: 'Proszę podać nazwę użytkownika'
+        long: '[-Inf,Inf]Nazwa użytkownika jest za długa'
+        short: '[-Inf,Inf]Nazwa użytkownika jest za krótka'
+
+sport:
+    name:
+        taken: sport.name.taken

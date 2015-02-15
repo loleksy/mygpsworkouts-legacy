@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Base\UserPermissionCheckInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Workout
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="workout", indexes={@ORM\Index(name="fk_table1_users1_idx", columns={"user_id"}), @ORM\Index(name="fk_table1_sports1_idx", columns={"sport_id"})})
  * @ORM\Entity
  */
-class Workout
+class Workout implements UserPermissionCheckInterface
 {
     /**
      * @var \DateTime
@@ -334,5 +336,9 @@ class Workout
     public function getTrackpoints()
     {
         return $this->trackpoints;
+    }
+
+    public function isOwnedBy(User $user){
+        return $this->getUser()->getId() === $user->getId();
     }
 }
