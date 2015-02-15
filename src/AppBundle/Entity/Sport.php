@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Base\UserPermissionCheckInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,14 +11,14 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Sport
  *
  * @ORM\Table(name="sport", indexes={@ORM\Index(name="fk_sports_users_idx", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SportRepository")
  * @UniqueEntity(
  *     fields={"user", "name"},
  *     errorPath="name",
  *     message="sport.name.taken"
  * )
  */
-class Sport implements UserPermissionCheckInterface
+class Sport
 {
     /**
      * @var string
@@ -212,9 +211,5 @@ class Sport implements UserPermissionCheckInterface
     public function getUser()
     {
         return $this->user;
-    }
-
-    public function isOwnedBy(User $user){
-        return $this->getUser()->getId() === $user->getId();
     }
 }

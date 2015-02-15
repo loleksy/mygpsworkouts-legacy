@@ -8,8 +8,18 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     authentication_entry_point:
-        class: AppBundle\Service\AuthenticationEntryPointService
+        class: AppBundle\Security\AuthenticationEntryPoint
         arguments: [ @router ]
     app.workout_import:
         class:  AppBundle\Service\WorkoutImportService
         arguments: ["@doctrine.orm.entity_manager"]
+    security.access.workout_voter:
+            class:      AppBundle\Security\Authorization\Voter\WorkoutVoter
+            public:     false
+            tags:
+               - { name: security.voter }
+    security.access.sport_voter:
+           class:      AppBundle\Security\Authorization\Voter\SportVoter
+           public:     false
+           tags:
+              - { name: security.voter }

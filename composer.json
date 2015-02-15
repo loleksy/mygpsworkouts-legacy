@@ -23,7 +23,9 @@
         "jms/di-extra-bundle": "1.5.*",
         "jms/i18n-routing-bundle": "1.1.*",
         "jms/translation-bundle": "1.1.*",
-        "mjaschen/phpgeo": "0.2.*"
+        "mjaschen/phpgeo": "0.2.*",
+        "knplabs/knp-paginator-bundle": "2.4.*"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

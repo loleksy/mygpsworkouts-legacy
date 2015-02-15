@@ -13,24 +13,29 @@
     </div>
     <div class="clearfix"></div>
     <br>
-    {%  if entities %}
+    {%  if pagination %}
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>TODO TODO</th>
-                <th>TODO TODO</th>
+                <th>{{ 'workout.list.columns.date'|trans }}</th>
+                <th>{{ 'workout.list.columns.sport'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for entity in entities %}
-            <tr>
-                <td>TODO</td>
-                <td>TODO</td>
+                {% for entity in pagination %}
+                    <tr>
+                    <td>{{ entity.getStartDatetime()|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ entity.getSport().getDisplayName() }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
-            </tr>
-           {% endfor %}
-        </tbody>
     {%  else %}
         {{ 'noResults'|trans }}
     {% endif %}

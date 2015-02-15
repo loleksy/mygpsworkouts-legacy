@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Workout controller.
@@ -26,25 +27,30 @@ class WorkoutController extends Controller {
 
     /**
      * Lists all workouts entities.
-     *
      * @Route("/", name="workout")
      * @Method("GET")
      * @Template()
+     * @param Request $request
+     * @return array
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Workout')->findBy(array('user' => $this->getUser()));
+        $pagination = $em->getRepository('AppBundle:Workout')->getPaginatedList(
+            $this->getUser(),
+            $this->get('knp_paginator'),
+            $request->query->get('page', 1)
+        );
 
-        $deleteForms = array();
-        foreach ($entities as $entity) {
-            $deleteForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
-        }
+//        $deleteForms = array();
+//        foreach ($pagination as $entity) {
+//            $deleteForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
+//        }
 
         return array(
-            'entities' => $entities,
-            'deleteForms' => $deleteForms
+            'pagination' => $pagination,
+           // 'deleteForms' => $deleteForms
         );
     }
 

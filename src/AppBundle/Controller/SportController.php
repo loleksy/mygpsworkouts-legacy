@@ -119,7 +119,7 @@ class SportController extends Controller
 
         $entity = $em->getRepository('AppBundle:Sport')->find($id);
 
-        if (!$entity) {
+        if (!$entity || !$this->get('security.authorization_checker')->isGranted('edit', $entity)){
             throw $this->createNotFoundException('Unable to find Sport entity.');
         }
 
@@ -160,7 +160,7 @@ class SportController extends Controller
 
         $entity = $em->getRepository('AppBundle:Sport')->find($id);
 
-        if (!$entity || !$entity->isOwnedBy($this->getUser())) {
+        if (!$entity || !$this->get('security.authorization_checker')->isGranted('edit', $entity)){
             throw $this->createNotFoundException('Unable to find Sport entity.');
         }
 
@@ -193,12 +193,18 @@ class SportController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AppBundle:Sport')->find($id);
 
-            if (!$entity || !$entity->isOwnedBy($this->getUser())) {
+            if (!$entity || !$this->get('security.authorization_checker')->isGranted('delete', $entity)) {
                 throw $this->createNotFoundException('Unable to find Sport entity.');
             }
-            $em->remove($entity);
-            $em->flush();
-            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans('sport.flash.deleted'));
+            if(count($entity->getWorkouts())){
+                $request->getSession()->getFlashBag()->add('danger', $this->get('translator')->trans('sport.flash.deleteError.relatedWorkouts'));
+            }
+            else{
+                $em->remove($entity);
+                $em->flush();
+                $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans('sport.flash.deleted'));
+            }
+
         }
 
         return $this->redirect($this->generateUrl('sport'));

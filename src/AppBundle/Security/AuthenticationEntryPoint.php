@@ -6,7 +6,7 @@
  * Time: 19:12
  */
 
-namespace AppBundle\Service;
+namespace AppBundle\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
-class AuthenticationEntryPointService implements AuthenticationEntryPointInterface {
+class AuthenticationEntryPoint implements AuthenticationEntryPointInterface {
 
     /**
      * @var Router
