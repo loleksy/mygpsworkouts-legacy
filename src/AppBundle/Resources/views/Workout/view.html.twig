@@ -1,0 +1,51 @@
+{% extends 'AppBundle::layouts/filled.html.twig' %}
+
+{% block javascripts %}
+    {{- parent() -}}
+    {% javascripts
+    "bundles/app/js/plugins/workout-preview-page.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" ></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $(function(){
+            var data = {{ entity.getTrackpoints().toArray()|json_encode|raw}}
+            var options = {
+                'color': '{{ entity.getSport.getColor() }}'
+            };
+            var workoutMapPreview = new WorkoutMapPreview(data, options);
+            workoutMapPreview.render();
+
+            $('#mapFullScreenEnter').click(function(){
+                $("#workoutMapCanvas").css("position", 'fixed').
+                        css('top', 0).
+                        css('left', 0).
+                        css("width", '100%').
+                        css("height", '100%').
+                        css("z-index", 101);
+                google.maps.event.trigger(workoutMapPreview.mapData.map, 'resize');
+                map.setCenter(newyork);
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content -%}
+
+    <div class="panel-heading">
+        <h2 class="pull-left">{{ entity.getSport().getDisplayName()|capitalize }}, {{ entity.getStartDatetime()|date('Y-m-d H:i:s') }}</h2>
+        <div class="pull-right header-buttons">
+            <a href="" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-export"></span>
+                {{ 'workout.view.tcxExport'|trans }}
+            </a>
+        </div>
+    </div>
+    <div class="cb"></div>
+    <button class="btn btn-default" id="mapFullScreenEnter"><span class="glyphicon glyphicon glyphicon-resize-full"></span></button>
+    <div id="workoutMapCanvas" class="mapCanvas">
+
+    </div>
+
+{% endblock %}

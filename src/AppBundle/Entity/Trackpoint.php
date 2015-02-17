@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="trackpoint", indexes={@ORM\Index(name="fk_trackpoints_workouts1_idx", columns={"workout_id"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TrackpointRepository")
  */
-class Trackpoint
+class Trackpoint implements \JsonSerializable
 {
     /**
      * @var integer
@@ -244,5 +244,15 @@ class Trackpoint
     public function getWorkout()
     {
         return $this->workout;
+    }
+
+    public function jsonSerialize(){
+        return array(
+            $this->getDatetime()->getTimestamp(),
+            $this->getLat(),
+            $this->getLng(),
+            $this->getAltitudeMeters(),
+            $this->getHearthRateBpm()
+        );
     }
 }

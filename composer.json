@@ -24,7 +24,8 @@
         "jms/i18n-routing-bundle": "1.1.*",
         "jms/translation-bundle": "1.1.*",
         "mjaschen/phpgeo": "0.2.*",
-        "knplabs/knp-paginator-bundle": "2.4.*"
+        "knplabs/knp-paginator-bundle": "2.4.*",
+        "dtl/time-distance-bundle":"*"
 
     },
     "require-dev": {

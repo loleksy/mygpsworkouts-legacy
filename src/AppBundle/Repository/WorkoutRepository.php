@@ -18,7 +18,7 @@ class WorkoutRepository extends EntityRepository {
     public function getPaginatedList(User $user, Paginator $paginator, $pageNumber)
     {
         $query = $this->createQueryBuilder('w')
-            ->select(array('partial w.{id, startDatetime}', 'partial s.{id, displayName}'))
+            ->select(array('partial w.{id, startDatetime, distanceMeters, totalTimeSeconds}', 'partial s.{id, displayName}'))
             ->where('w.user = :user')
             ->setParameter('user', $user)
             ->join('w.sport', 's')

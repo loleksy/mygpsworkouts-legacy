@@ -19,14 +19,24 @@
             <thead>
             <tr>
                 <th>{{ 'workout.list.columns.date'|trans }}</th>
+                <th>{{ 'workout.list.columns.distance'|trans }}</th>
+                <th>{{ 'workout.list.columns.duration'|trans }}</th>
                 <th>{{ 'workout.list.columns.sport'|trans }}</th>
+                <th>{{ 'workout.list.columns.action'|trans }}</th>
             </tr>
             </thead>
             <tbody>
                 {% for entity in pagination %}
                     <tr>
                     <td>{{ entity.getStartDatetime()|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ entity.getDistanceMeters()|distance }}</td>
+                    <td>{{ entity.getTotalTimeSeconds()|duration  }}</td>
                     <td>{{ entity.getSport().getDisplayName() }}</td>
+                    <td>
+                        <a data-toggle="tooltip" data-placement="left" title="{{ 'details'|trans }}" class="btn btn-sm btn-info" href="{{ path('workout_view', { 'id': entity.id }) }}">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

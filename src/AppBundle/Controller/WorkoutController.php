@@ -55,6 +55,28 @@ class WorkoutController extends Controller {
     }
 
     /**
+     * Displays specified workout
+     *
+     * @Route("/{id}", name="workout_view")
+     * @Method("GET")
+     * @Template()
+     */
+    public function viewAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:Workout')->find($id);
+
+        if (!$entity || !$this->get('security.authorization_checker')->isGranted('view', $entity)){
+            throw $this->createNotFoundException('Unable to find Workout entity.');
+        }
+        return array(
+            'entity'      => $entity,
+        );
+
+
+    }
+
+    /**
      * Deletes a Workout entity.
      *
      * @Route("/{id}", name="workout_delete")
