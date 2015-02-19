@@ -16,12 +16,17 @@
         {% endstylesheets %}
     {% endblock %}
     {% block javascripts %}
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
         {% javascripts
             'bundles/app/vendor/jquery/jquery-2.1.3.min.js'
             'bundles/app/vendor/bootstrap/js/bootstrap.min.js'
             'bundles/app/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js'
             'bundles/app/vendor/bootbox/bootbox.min.js'
+            'bundles/app/vendor/dropzone/dropzone.js'
+            'bundles/app/js/utils.js'
+            'bundles/app/js/plugins/WorkoutMarkerImageGenerator.js'
+            'bundles/app/js/plugins/WorkoutMapPreview.js'
+            'bundles/app/js/plugins/TcxImportDropzone.js'
             'bundles/app/js/main.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>

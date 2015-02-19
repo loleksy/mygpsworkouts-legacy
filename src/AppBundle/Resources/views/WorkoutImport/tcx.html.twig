@@ -4,13 +4,13 @@
     {{- parent() -}}
     {% javascripts
         "bundles/app/vendor/dropzone/dropzone.js"
-        "bundles/app/js/plugins/tcx-import-dropzone.js"
+        "bundles/app/js/plugins/TcxImportDropzone.js"
     %}
         <script type="text/javascript" src="{{ asset_url }}" ></script>
     {% endjavascripts %}
     <script type="text/javascript">
         $(function(){
-            var tcxImport = new TcxImport({
+            var tcxImport = new myGpsWorkouts.plugins.TcxImport({
                 'uploadUrl': '{{ path('workout_import_tcx_ajax_upload') }}'
             });
         });

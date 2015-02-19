@@ -1,16 +1,19 @@
+var myGpsWorkouts = myGpsWorkouts || {};
+myGpsWorkouts.plugins = myGpsWorkouts.plugins || {};
 
-var TcxImport = function(options){
+
+myGpsWorkouts.plugins.TcxImport = function(options){
     this.initState();
     this.setOptions(options);
     this.initDropzone();
 };
 
-TcxImport.prototype.initState = function(){
+myGpsWorkouts.plugins.TcxImport.prototype.initState = function(){
     this.handledFilesCount = 0;
     this.pendingFilesCount = 0;
 }
 
-TcxImport.prototype.setOptions = function(options) {
+myGpsWorkouts.plugins.TcxImport.prototype.setOptions = function(options) {
     if (!options.uploadUrl) {
         throw "no uploadUrl in options.";
     }
@@ -18,7 +21,7 @@ TcxImport.prototype.setOptions = function(options) {
     this.options.uploadUrl = options.uploadUrl;
 }
 
-TcxImport.prototype.initDropzone = function() {
+myGpsWorkouts.plugins.TcxImport.prototype.initDropzone = function() {
     /* init dropzone */
 
     // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
@@ -82,7 +85,7 @@ TcxImport.prototype.initDropzone = function() {
 
 }
 
-TcxImport.prototype.checkStartButtonVisibility = function(){
+myGpsWorkouts.plugins.TcxImport.prototype.checkStartButtonVisibility = function(){
     if(this.pendingFilesCount){
         $('#actions .start').show();
     }
@@ -92,7 +95,7 @@ TcxImport.prototype.checkStartButtonVisibility = function(){
 }
 
 
-TcxImport.prototype.onStartClicked = function(e){
+myGpsWorkouts.plugins.TcxImport.prototype.onStartClicked = function(e){
     $('#action-buttons').hide();
     //remove delete buttons
     for(var i in this.dropzone.getAcceptedFiles()){
@@ -103,21 +106,21 @@ TcxImport.prototype.onStartClicked = function(e){
     this.dropzone.enqueueFiles(this.dropzone.getFilesWithStatus(Dropzone.ADDED));
 }
 
-TcxImport.prototype.onDropzoneFileAdded = function(){
+myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneFileAdded = function(){
     this.pendingFilesCount+=1;
     this.checkStartButtonVisibility();
 }
 
-TcxImport.prototype.onDropzoneFileRemoved = function(){
+myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneFileRemoved = function(){
     this.pendingFilesCount-=1;
     this.checkStartButtonVisibility();
 }
 
-TcxImport.prototype.onDropzoneComplete = function(){
+myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneComplete = function(){
     this.handledFilesCount+=1;
 }
 
-TcxImport.prototype.onDropzoneTotalUploadProgress = function(){
+myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneTotalUploadProgress = function(){
     //progress is buggy and returns wrong values
     var totalFilesCount = this.dropzone.getAcceptedFiles().length;
     if(totalFilesCount){
@@ -126,20 +129,20 @@ TcxImport.prototype.onDropzoneTotalUploadProgress = function(){
     }
 }
 
-TcxImport.prototype.onDropzoneSending = function(file){
+myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneSending = function(file){
     // Show the total progress bar when upload starts
     $('#current-file').text(file.name);
     $(file.previewElement.querySelector(".spinner")).show();
 }
 
-TcxImport.prototype.onDropzoneQueueComplete = function(){
+myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneQueueComplete = function(){
     $(".progress-bar").hide();
     $("#total-progress").hide();
     $('#current-file').hide();
     $('#upload-completed-actions').show();
 }
 
-TcxImport.prototype.onDropzoneSuccess = function(file, result){
+myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneSuccess = function(file, result){
     // the file parameter is https://developer.mozilla.org/en-US/docs/DOM/File
     // the result parameter is the result from the server
     for(var i in result){
@@ -163,7 +166,7 @@ TcxImport.prototype.onDropzoneSuccess = function(file, result){
     }
 }
 
-TcxImport.prototype.onDropzoneError = function(file, errorMessage, xhr){
+myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneError = function(file, errorMessage, xhr){
     // if the xhr parameter exists, it means the error was server-side
     if (xhr && xhr.status === 401) {
         //session expired, redirect whole page
