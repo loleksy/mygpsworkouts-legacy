@@ -42,7 +42,7 @@
                 {{ 'workout.view.summary.calories'|trans }}
             </span>
             <span class="summaryValue">
-                {{ entity.getCalories()  }}
+                {{ entity.getCalories()|default('-')  }}
             </span>
         </div>
         <div class="col-md-2">
@@ -50,7 +50,7 @@
                 {{ 'workout.view.summary.averageHeartRate'|trans }}
             </span>
             <span class="summaryValue">
-                {{ entity.getAverageHeartRateBpm()  }}
+                {{ entity.getAverageHeartRateBpm()|default('-')  }}
             </span>
         </div>
         <div class="col-md-2">
@@ -58,7 +58,7 @@
                 {{ 'workout.view.summary.maximumHeartRate'|trans }}
             </span>
             <span class="summaryValue">
-                {{ entity.getMaximumHeartRateBpm()  }}
+                {{ entity.getMaximumHeartRateBpm()|default('-')  }}
             </span>
         </div>
         <div class="col-md-2">

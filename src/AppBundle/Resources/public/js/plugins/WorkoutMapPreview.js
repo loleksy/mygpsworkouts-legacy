@@ -51,8 +51,9 @@ myGpsWorkouts.plugins.WorkoutMapPreview.prototype.render = function(){
     this.renderPolyLine();
     this.fitMapToPolyLineBounds();
     this.renderStartMarker();
-    this.renderCheckPointMarkers(1000);
+    this.renderCheckPointMarkers();
     this.renderEndMarker();
+    this.setMapEvents();
 };
 
 myGpsWorkouts.plugins.WorkoutMapPreview.prototype.initMap = function(){
@@ -114,19 +115,19 @@ myGpsWorkouts.plugins.WorkoutMapPreview.prototype.fitMapToPolyLineBounds = funct
     this.mapData.map.fitBounds(this.mapData.bounds);
 }
 
-myGpsWorkouts.plugins.WorkoutMapPreview.prototype.renderCheckPointMarkers = function(distance){
+myGpsWorkouts.plugins.WorkoutMapPreview.prototype.renderCheckPointMarkers = function(){
     if(!this.mapData.polyLineLatLngs || this.mapData.polyLineLatLngs.length < 2){
         return;
     }
-    distance = distance || 1000;
+    var distance = 1000;
     var i=1;
     var length = google.maps.geometry.spherical.computeLength(this.mapData.polyLineLatLngs);
     var remainingDist = length;
+    var markersGap = this.calcOptimalCheckPointMarkersGap();
     while (remainingDist > 0)
     {
         var marker = new google.maps.Marker({
             position:myGpsWorkouts.utils.geo.getPointAtDistance(this.mapData.polyLine, 1000*i),
-            map:this.mapData.map,
             title: String(i),
             icon: {
                 url: this.imageGenerator.generateNumberImage(this.options.color, i).getCanvas().toDataURL(),
@@ -135,10 +136,14 @@ myGpsWorkouts.plugins.WorkoutMapPreview.prototype.renderCheckPointMarkers = func
                 anchor: this.mapData.markerIconSettings.anchor
             }
         });
+        if(markersGap ||(i % markersGap === 0)){
+            marker.setMap(this.mapData.map);
+        }
         this.mapData.markers.checkpoints.push(marker);
         remainingDist -= distance;
         i++;
     }
+    this.mapData.renderedCheckPointMarkersGap =  markersGap;
 }
 
 myGpsWorkouts.plugins.WorkoutMapPreview.prototype.renderStartMarker = function(){
@@ -177,6 +182,40 @@ myGpsWorkouts.plugins.WorkoutMapPreview.prototype.renderEndMarker = function(){
     this.mapData.markers.checkpoints.push(marker);
 };
 
+myGpsWorkouts.plugins.WorkoutMapPreview.prototype.setMapEvents = function(){
+    var that = this;
+    google.maps.event.addListener(this.mapData.map, 'zoom_changed', function() {
+       that.onZoomChanged();
+    });
+};
+
+myGpsWorkouts.plugins.WorkoutMapPreview.prototype.calcOptimalCheckPointMarkersGap = function(){
+    var zoom = this.mapData.map.getZoom();
+    if(zoom > 13){
+        return 1;
+    }
+    if(zoom > 8){
+        return 10;
+    }
+    return 0;
+}
+
+myGpsWorkouts.plugins.WorkoutMapPreview.prototype.onZoomChanged = function(){
+    var markerGap = this.calcOptimalCheckPointMarkersGap();
+    if(markerGap !== this.mapData.renderedCheckPointMarkersGap){
+        for(var i=0; i< this.mapData.markers.checkpoints.length-1; i++){
+            if(i%markerGap !== 0){
+                this.mapData.markers.checkpoints[i].setMap(null);
+            }
+            else{
+                this.mapData.markers.checkpoints[i].setMap(this.mapData.map);
+            }
+        }
+    }
+    this.mapData.renderedCheckPointMarkersGap = markerGap;
+}
+
+
 myGpsWorkouts.plugins.WorkoutMapPreview.prototype.getRawDataRowValue = function(index, key){
     switch(key){
         case 'timestamp':
@@ -192,7 +231,6 @@ myGpsWorkouts.plugins.WorkoutMapPreview.prototype.getRawDataRowValue = function(
         default:
             throw "Unknown key"
     }
-
 };
 
 
