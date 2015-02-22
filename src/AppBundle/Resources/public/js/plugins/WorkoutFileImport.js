@@ -2,18 +2,18 @@ var myGpsWorkouts = myGpsWorkouts || {};
 myGpsWorkouts.plugins = myGpsWorkouts.plugins || {};
 
 
-myGpsWorkouts.plugins.TcxImport = function(options){
+myGpsWorkouts.plugins.WorkoutFileImport = function(options){
     this.initState();
     this.setOptions(options);
     this.initDropzone();
 };
 
-myGpsWorkouts.plugins.TcxImport.prototype.initState = function(){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.initState = function(){
     this.handledFilesCount = 0;
     this.pendingFilesCount = 0;
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.setOptions = function(options) {
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.setOptions = function(options) {
     if (!options.uploadUrl) {
         throw "no uploadUrl in options.";
     }
@@ -21,7 +21,7 @@ myGpsWorkouts.plugins.TcxImport.prototype.setOptions = function(options) {
     this.options.uploadUrl = options.uploadUrl;
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.initDropzone = function() {
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.initDropzone = function() {
     /* init dropzone */
 
     // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
@@ -85,7 +85,7 @@ myGpsWorkouts.plugins.TcxImport.prototype.initDropzone = function() {
 
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.checkStartButtonVisibility = function(){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.checkStartButtonVisibility = function(){
     if(this.pendingFilesCount){
         $('#actions .start').show();
     }
@@ -95,7 +95,7 @@ myGpsWorkouts.plugins.TcxImport.prototype.checkStartButtonVisibility = function(
 }
 
 
-myGpsWorkouts.plugins.TcxImport.prototype.onStartClicked = function(e){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onStartClicked = function(e){
     $('#action-buttons').hide();
     //remove delete buttons
     for(var i in this.dropzone.getAcceptedFiles()){
@@ -106,21 +106,21 @@ myGpsWorkouts.plugins.TcxImport.prototype.onStartClicked = function(e){
     this.dropzone.enqueueFiles(this.dropzone.getFilesWithStatus(Dropzone.ADDED));
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneFileAdded = function(){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneFileAdded = function(){
     this.pendingFilesCount+=1;
     this.checkStartButtonVisibility();
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneFileRemoved = function(){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneFileRemoved = function(){
     this.pendingFilesCount-=1;
     this.checkStartButtonVisibility();
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneComplete = function(){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneComplete = function(){
     this.handledFilesCount+=1;
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneTotalUploadProgress = function(){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneTotalUploadProgress = function(){
     //progress is buggy and returns wrong values
     var totalFilesCount = this.dropzone.getAcceptedFiles().length;
     if(totalFilesCount){
@@ -129,20 +129,20 @@ myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneTotalUploadProgress = functi
     }
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneSending = function(file){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneSending = function(file){
     // Show the total progress bar when upload starts
     $('#current-file').text(file.name);
     $(file.previewElement.querySelector(".spinner")).show();
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneQueueComplete = function(){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneQueueComplete = function(){
     $(".progress-bar").hide();
     $("#total-progress").hide();
     $('#current-file').hide();
     $('#upload-completed-actions').show();
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneSuccess = function(file, result){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneSuccess = function(file, result){
     // the file parameter is https://developer.mozilla.org/en-US/docs/DOM/File
     // the result parameter is the result from the server
     for(var i in result){
@@ -166,7 +166,7 @@ myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneSuccess = function(file, res
     }
 }
 
-myGpsWorkouts.plugins.TcxImport.prototype.onDropzoneError = function(file, errorMessage, xhr){
+myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneError = function(file, errorMessage, xhr){
     // if the xhr parameter exists, it means the error was server-side
     if (xhr && xhr.status === 401) {
         //session expired, redirect whole page

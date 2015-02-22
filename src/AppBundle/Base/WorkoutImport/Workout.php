@@ -189,9 +189,9 @@ class Workout {
         if($this->averageHeartRateBpm){
             return $this->averageHeartRateBpm;
         }
-        $hearthRateValues = $this->getHearthRateValues();
-        if($hearthRateValues){
-            return array_sum($hearthRateValues) / count($hearthRateValues);
+        $heartRateValues = $this->getHeartRateValues();
+        if($heartRateValues){
+            return array_sum($heartRateValues) / count($heartRateValues);
         }
         return null;
     }
@@ -212,9 +212,9 @@ class Workout {
         if($this->maximumHeartRateBpm){
             return $this->maximumHeartRateBpm;
         }
-        $hearthRateValues = $this->getHearthRateValues();
-        if($hearthRateValues){
-            return max($hearthRateValues);
+        $heartRateValues = $this->getHeartRateValues();
+        if($heartRateValues){
+            return max($heartRateValues);
         }
         return null;
     }
@@ -261,11 +261,11 @@ class Workout {
 
     }
 
-    public function getHearthRateValues(){
+    public function getHeartRateValues(){
         $values = array();
         foreach($this->trackPoints as $trackPoint){
-            if($trackPoint->getHearthRateBpm()){
-                $values[] = $trackPoint->getHearthRateBpm();
+            if($trackPoint->getHeartRateBpm()){
+                $values[] = $trackPoint->getHeartRateBpm();
             }
         }
         return $values;
@@ -293,8 +293,8 @@ class Workout {
 //            $model->total_time_seconds  = $this->getTotalTimeSeconds();
 //            $model->distance_meters = $this->getDistanceMeters();
 //            $model->calories = $this->getCalories();
-//            $model->average_hearth_rate_bpm = $this->getAverageHeartRateBpm();
-//            $model->maximum_hearth_rate_bpm = $this->getMaximumHeartRateBpm();
+//            $model->average_heart_rate_bpm = $this->getAverageHeartRateBpm();
+//            $model->maximum_heart_rate_bpm = $this->getMaximumHeartRateBpm();
 //            $model->save();
 //            $index = 0;
 //            foreach($this->getTrackPoints() as $trackpoint){
@@ -305,7 +305,7 @@ class Workout {
 //                $trackpointModel->lat = $trackpoint->getLat();
 //                $trackpointModel->lng = $trackpoint->getLng();
 //                $trackpointModel->altitude_meters = $trackpoint->getAltitudeMeters();
-//                $trackpointModel->heart_rate_bpm = $trackpoint->getHearthRateBpm();
+//                $trackpointModel->heart_rate_bpm = $trackpoint->getHeartRateBpm();
 //                $index+=1;
 //                $trackpointModel->save();
 //            }

@@ -72,8 +72,6 @@ class WorkoutController extends Controller {
         return array(
             'entity'      => $entity,
         );
-
-
     }
 
     /**

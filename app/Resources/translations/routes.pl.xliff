@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-02-17T20:13:16Z" source-language="en" target-language="pl" datatype="plaintext" original="not.available">
+  <file date="2015-02-22T20:01:30Z" source-language="en" target-language="pl" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -78,13 +78,17 @@
         <source>/{id}</source>
         <target>/treningi/{id}</target>
       </trans-unit>
-      <trans-unit id="250be56da06281d6eb56706072de3fccb4f9ccef" resname="workout_import_tcx">
-        <source>/workout/import/tcx</source>
-        <target>/treningi/import/tcx</target>
+      <trans-unit id="9a24caee269a084c7ccd33d848b90a1cfecfba69" resname="workout_import_file">
+        <source>/workout/import/file</source>
+        <target>/treningi/import/plik</target>
       </trans-unit>
-      <trans-unit id="a58335ceec1b4c4224e50a75072904de6ec9d3d7" resname="workout_import_tcx_ajax_upload">
-        <source>/workout/import/tcx/ajax/upload</source>
-        <target>/treningi/import/tcx/ajax/upload</target>
+      <trans-unit id="692d8c2c5def84382c3c905fee9fec812921d560" resname="workout_import_file_ajax_upload">
+        <source>/workout/import/file/ajax/upload</source>
+        <target>/treningi/import/plik/ajax/upload</target>
+      </trans-unit>
+      <trans-unit id="baee22790c6aef3c072924b0414db75ac0a8b0d6" resname="workout_import_trackers">
+        <source>/workout/import/trackers</source>
+        <target>/treningi/import/serwisy</target>
       </trans-unit>
       <trans-unit id="c2126a4bbd392bd76b9b6f80137ffa7542414523" resname="workout_view">
         <source>/workout/{id}</source>

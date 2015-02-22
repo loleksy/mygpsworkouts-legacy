@@ -44,16 +44,16 @@ class Workout
     /**
      * @var integer
      *
-     * @ORM\Column(name="average_hearth_rate_bpm", type="integer", nullable=true)
+     * @ORM\Column(name="average_heart_rate_bpm", type="integer", nullable=true)
      */
-    protected $averageHearthRateBpm;
+    protected $averageHeartRateBpm;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="maximum_hearth_rate_bpm", type="integer", nullable=true)
+     * @ORM\Column(name="maximum_heart_rate_bpm", type="integer", nullable=true)
      */
-    protected $maximumHearthRateBpm;
+    protected $maximumHeartRateBpm;
 
     /**
      * @var integer
@@ -199,49 +199,49 @@ class Workout
     }
 
     /**
-     * Set averageHearthRateBpm
+     * Set averageHeartRateBpm
      *
-     * @param integer $averageHearthRateBpm
+     * @param integer $averageHeartRateBpm
      * @return Workout
      */
-    public function setAverageHearthRateBpm($averageHearthRateBpm)
+    public function setAverageHeartRateBpm($averageHeartRateBpm)
     {
-        $this->averageHearthRateBpm = $averageHearthRateBpm;
+        $this->averageHeartRateBpm = $averageHeartRateBpm;
 
         return $this;
     }
 
     /**
-     * Get averageHearthRateBpm
+     * Get averageHeartRateBpm
      *
      * @return integer 
      */
-    public function getAverageHearthRateBpm()
+    public function getAverageHeartRateBpm()
     {
-        return $this->averageHearthRateBpm;
+        return $this->averageHeartRateBpm;
     }
 
     /**
-     * Set maximumHearthRateBpm
+     * Set maximumHeartRateBpm
      *
-     * @param integer $maximumHearthRateBpm
+     * @param integer $maximumHeartRateBpm
      * @return Workout
      */
-    public function setMaximumHearthRateBpm($maximumHearthRateBpm)
+    public function setMaximumHeartRateBpm($maximumHeartRateBpm)
     {
-        $this->maximumHearthRateBpm = $maximumHearthRateBpm;
+        $this->maximumHeartRateBpm = $maximumHeartRateBpm;
 
         return $this;
     }
 
     /**
-     * Get maximumHearthRateBpm
+     * Get maximumHeartRateBpm
      *
      * @return integer 
      */
-    public function getMaximumHearthRateBpm()
+    public function getMaximumHeartRateBpm()
     {
-        return $this->maximumHearthRateBpm;
+        return $this->maximumHeartRateBpm;
     }
 
     /**

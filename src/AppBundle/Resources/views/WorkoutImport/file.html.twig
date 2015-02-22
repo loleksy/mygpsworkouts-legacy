@@ -2,16 +2,10 @@
 
 {% block javascripts %}
     {{- parent() -}}
-    {% javascripts
-        "bundles/app/vendor/dropzone/dropzone.js"
-        "bundles/app/js/plugins/TcxImportDropzone.js"
-    %}
-        <script type="text/javascript" src="{{ asset_url }}" ></script>
-    {% endjavascripts %}
     <script type="text/javascript">
         $(function(){
-            var tcxImport = new myGpsWorkouts.plugins.TcxImport({
-                'uploadUrl': '{{ path('workout_import_tcx_ajax_upload') }}'
+            var workoutfileImport = new myGpsWorkouts.plugins.WorkoutFileImport({
+                'uploadUrl': '{{ path('workout_import_file_ajax_upload') }}'
             });
         });
     </script>
@@ -19,12 +13,12 @@
 
 {% block content %}
     <div class="panel-heading">
-        <h2 class="pull-left">{{ 'workout.import.tcx.title'|trans }}</h2>
+        <h2 class="pull-left">{{ 'workout.import.file.title'|trans }}</h2>
     </div>
     <div class="clearfix"></div>
     <br>
     <div class="well">
-        {{ 'workout.import.tcx.help'|trans }}
+        {{ 'workout.import.file.help'|trans }}
     </div>
 
     <div id="actions" class="row">
@@ -33,11 +27,11 @@
             <div id="action-buttons" class="pull-left">
                     <span class=" btn btn-success fileinput-button dz-clickable">
                         <i class="glyphicon glyphicon-plus"></i>
-                        <span>{{ 'workout.import.tcx.addFiles'|trans }}</span>
+                        <span>{{ 'workout.import.file.addFiles'|trans }}</span>
                     </span>
                 <button type="submit" class="btn btn-primary start" style="display:none;">
                     <i class="glyphicon glyphicon-upload"></i>
-                    <span>{{ 'messages.workout.import.tcx.startUpload'|trans }}</span>
+                    <span>{{ 'messages.workout.import.file.startUpload'|trans }}</span>
                 </button>
             </div>
             <div id="current-file" class="pull-left">
@@ -46,11 +40,11 @@
             <div id="upload-completed-actions" style="display:none;">
                 <a href="" class="btn btn-success">
                     <span class="glyphicon glyphicon-plus"></span>
-                    {{ 'workout.import.tcx.uploadMore'|trans }}
+                    {{ 'workout.import.file.uploadMore'|trans }}
                 </a>
                 <a href="" class="btn btn-primary">
                     <span class="glyphicon glyphicon-arrow-left"></span>
-                    {{ 'workout.import.tcx.backToList'|trans }}
+                    {{ 'workout.import.file.backToList'|trans }}
                 </a>
             </div>
 
@@ -70,7 +64,7 @@
         <div id="dropzone-template" class="file-row">
             <!-- This is used as the file preview template -->
             <div>
-                <div class="tcx-upload-row">
+                <div class="file-upload-row">
                     <span class="name" data-dz-name></span>
                     <button data-dz-remove class="btn btn-danger delete btn-xs">
                         <i class="glyphicon glyphicon-trash"></i>

@@ -34,7 +34,7 @@ class TrackPoint {
     /**
      * @var
      */
-    protected $hearth_rate_bpm;
+    protected $heart_rate_bpm;
 
     /**
      * @return \DateTime
@@ -104,17 +104,17 @@ class TrackPoint {
     /**
      * @return mixed
      */
-    public function getHearthRateBpm()
+    public function getHeartRateBpm()
     {
-        return $this->hearth_rate_bpm;
+        return $this->heart_rate_bpm;
     }
 
     /**
-     * @param mixed $hearth_rate_bpm
+     * @param mixed $heart_rate_bpm
      */
-    public function setHearthRateBpm($hearth_rate_bpm)
+    public function setHeartRateBpm($heart_rate_bpm)
     {
-        $this->hearth_rate_bpm = $hearth_rate_bpm;
+        $this->heart_rate_bpm = $heart_rate_bpm;
     }
 
     public function isValid(){

@@ -113,7 +113,7 @@ class Parser implements WorkoutImportInterface {
             $obj->setAltitudeMeters((int)$trackPoint->AltitudeMeters);
         }
         if(isset($trackPoint->HeartRateBpm) && isset($trackPoint->HeartRateBpm->Value)){
-            $obj->setHearthRateBpm((int)$trackPoint->HeartRateBpm->Value);
+            $obj->setHeartRateBpm((int)$trackPoint->HeartRateBpm->Value);
         }
         return $obj;
     }

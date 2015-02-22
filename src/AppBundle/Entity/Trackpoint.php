@@ -50,9 +50,9 @@ class Trackpoint implements \JsonSerializable
     /**
      * @var integer
      *
-     * @ORM\Column(name="hearth_rate_bpm", type="integer", nullable=true)
+     * @ORM\Column(name="heart_rate_bpm", type="integer", nullable=true)
      */
-    protected $hearthRateBpm;
+    protected $heartRateBpm;
 
     /**
      * @var integer
@@ -191,26 +191,26 @@ class Trackpoint implements \JsonSerializable
     }
 
     /**
-     * Set hearthRateBpm
+     * Set heartRateBpm
      *
-     * @param integer $hearthRateBpm
+     * @param integer $heartRateBpm
      * @return Trackpoint
      */
-    public function setHearthRateBpm($hearthRateBpm)
+    public function setHeartRateBpm($heartRateBpm)
     {
-        $this->hearthRateBpm = $hearthRateBpm;
+        $this->heartRateBpm = $heartRateBpm;
 
         return $this;
     }
 
     /**
-     * Get hearthRateBpm
+     * Get heartRateBpm
      *
      * @return integer 
      */
-    public function getHearthRateBpm()
+    public function getHeartRateBpm()
     {
-        return $this->hearthRateBpm;
+        return $this->heartRateBpm;
     }
 
     /**
@@ -252,7 +252,7 @@ class Trackpoint implements \JsonSerializable
             $this->getLat(),
             $this->getLng(),
             $this->getAltitudeMeters(),
-            $this->getHearthRateBpm()
+            $this->getHeartRateBpm()
         );
     }
 }

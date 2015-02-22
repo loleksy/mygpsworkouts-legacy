@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-02-17T20:13:55Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2015-02-22T20:07:00Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -19,7 +19,7 @@
       <trans-unit id="9a4c45f23391ea34672fbf108726a4728ae1f73a" resname="appTitle">
         <jms:reference-file line="4">views/default/index.html.twig</jms:reference-file>
         <jms:reference-file line="4">views/layouts/base.html.twig</jms:reference-file>
-        <jms:reference-file line="46">views/layouts/base.html.twig</jms:reference-file>
+        <jms:reference-file line="52">views/layouts/base.html.twig</jms:reference-file>
         <source>appTitle</source>
         <target>My GPS Workouts</target>
       </trans-unit>
@@ -29,9 +29,9 @@
         <target>Are you sure?</target>
       </trans-unit>
       <trans-unit id="9485989ff514b5106b7738850fd73c23e8c1e3f7" resname="delete">
-        <jms:reference-file line="77">views/WorkoutImport/tcx.html.twig</jms:reference-file>
+        <jms:reference-file line="71">views/WorkoutImport/file.html.twig</jms:reference-file>
         <jms:reference-file line="47">views/Sport/index.html.twig</jms:reference-file>
-        <jms:reference-file line="117">AppBundle/Controller/WorkoutController.php</jms:reference-file>
+        <jms:reference-file line="115">AppBundle/Controller/WorkoutController.php</jms:reference-file>
         <jms:reference-file line="225">AppBundle/Controller/SportController.php</jms:reference-file>
         <source>delete</source>
         <target>delete</target>
@@ -62,38 +62,38 @@
         <target>Name</target>
       </trans-unit>
       <trans-unit id="bbde645fd6a62fe4f4b9b2e0241bf2d565997432" resname="menu.login">
-        <jms:reference-file line="129">views/layouts/base.html.twig</jms:reference-file>
+        <jms:reference-file line="135">views/layouts/base.html.twig</jms:reference-file>
         <source>menu.login</source>
         <target>Login</target>
       </trans-unit>
       <trans-unit id="882df371590f3c425ef80e9bf8520babae2f0373" resname="menu.logout">
-        <jms:reference-file line="116">views/layouts/base.html.twig</jms:reference-file>
+        <jms:reference-file line="122">views/layouts/base.html.twig</jms:reference-file>
         <source>menu.logout</source>
         <target>Logout</target>
       </trans-unit>
       <trans-unit id="e49285d223714b108cb8049e2b22b81393f8fd7c" resname="menu.profile">
-        <jms:reference-file line="101">views/layouts/base.html.twig</jms:reference-file>
+        <jms:reference-file line="107">views/layouts/base.html.twig</jms:reference-file>
         <source>menu.profile</source>
         <target>Profile</target>
       </trans-unit>
       <trans-unit id="c54988667a0283622582847947df338754cc54e4" resname="menu.register">
-        <jms:reference-file line="132">views/layouts/base.html.twig</jms:reference-file>
+        <jms:reference-file line="138">views/layouts/base.html.twig</jms:reference-file>
         <source>menu.register</source>
         <target>Register</target>
       </trans-unit>
       <trans-unit id="c786979f596b7410e239b0531bcba88bb2f476d0" resname="menu.sports">
-        <jms:reference-file line="56">views/layouts/base.html.twig</jms:reference-file>
+        <jms:reference-file line="62">views/layouts/base.html.twig</jms:reference-file>
         <source>menu.sports</source>
         <target>Sports</target>
       </trans-unit>
       <trans-unit id="290dd7d64271b722a3e58a71b83ac8829ea22ea0" resname="menu.workouts">
-        <jms:reference-file line="53">views/layouts/base.html.twig</jms:reference-file>
+        <jms:reference-file line="59">views/layouts/base.html.twig</jms:reference-file>
         <source>menu.workouts</source>
         <target>Workouts</target>
       </trans-unit>
-      <trans-unit id="68a2a1d87dae5fdf893cb426e67e30eb2ff3a939" resname="messages.workout.import.tcx.startUpload">
-        <jms:reference-file line="40">views/WorkoutImport/tcx.html.twig</jms:reference-file>
-        <source>messages.workout.import.tcx.startUpload</source>
+      <trans-unit id="6dddf57377e53e374285420db142e6cb1681e92b" resname="messages.workout.import.file.startUpload">
+        <jms:reference-file line="34">views/WorkoutImport/file.html.twig</jms:reference-file>
+        <source>messages.workout.import.file.startUpload</source>
         <target>Start upload</target>
       </trans-unit>
       <trans-unit id="35584caeff520a00fbf68f5ae1de96cbe81d81fd" resname="noResults">
@@ -183,40 +183,45 @@
         <source>sport.list.title</source>
         <target>Sports</target>
       </trans-unit>
-      <trans-unit id="be22bb2728a3021a5d3c15d01209859572fccf0d" resname="workout.import.tcx.addFiles">
-        <jms:reference-file line="36">views/WorkoutImport/tcx.html.twig</jms:reference-file>
-        <source>workout.import.tcx.addFiles</source>
-        <target>Add files...</target>
+      <trans-unit id="c2bf29a6b8471b8f4230aad566def9e5df69fede" resname="workout.fileImport.duplicateWorkout">
+        <jms:reference-file line="86">AppBundle/Controller/WorkoutImportController.php</jms:reference-file>
+        <source>workout.fileImport.duplicateWorkout</source>
+        <target>Duplicate detected.</target>
       </trans-unit>
-      <trans-unit id="4a676d149ac23dd39342d90742fb932c22124666" resname="workout.import.tcx.backToList">
-        <jms:reference-file line="53">views/WorkoutImport/tcx.html.twig</jms:reference-file>
-        <source>workout.import.tcx.backToList</source>
-        <target>Go back to the list</target>
+      <trans-unit id="c236ed7db78e21b96e7cafbe64043aed549ce2ec" resname="workout.fileImport.success">
+        <jms:reference-file line="95">AppBundle/Controller/WorkoutImportController.php</jms:reference-file>
+        <source>workout.fileImport.success</source>
+        <target>Success</target>
       </trans-unit>
-      <trans-unit id="a505b4bbf19096db2088a201dab35c4db12a72f5" resname="workout.import.tcx.help">
-        <jms:reference-file line="27">views/WorkoutImport/tcx.html.twig</jms:reference-file>
-        <source>workout.import.tcx.help</source>
-        <target>TCX is an XML file introduced by Garmin. Only files exported by Endomondo was tested. Full compatibility is not guaranteed.</target>
+      <trans-unit id="47c788ff04a16847686c4bcd6920b33b6e488ef3" resname="workout.import.file.addFiles">
+        <jms:reference-file line="30">views/WorkoutImport/file.html.twig</jms:reference-file>
+        <source>workout.import.file.addFiles</source>
+        <target>Add files</target>
       </trans-unit>
-      <trans-unit id="ef50bdb6c8a1a2add2ac4d4f19292aadf96027a6" resname="workout.import.tcx.invalidFile">
-        <jms:reference-file line="71">AppBundle/Controller/WorkoutImportController.php</jms:reference-file>
-        <source>workout.import.tcx.invalidFile</source>
-        <target>Invalid file</target>
+      <trans-unit id="a392c3c62ed60b77871559a236f45475b21217be" resname="workout.import.file.backToList">
+        <jms:reference-file line="47">views/WorkoutImport/file.html.twig</jms:reference-file>
+        <source>workout.import.file.backToList</source>
+        <target>Back to list.</target>
       </trans-unit>
-      <trans-unit id="ed7137c9b1bc962cecdc16e582a3f653a66b3128" resname="workout.import.tcx.notUploaded">
-        <jms:reference-file line="56">AppBundle/Controller/WorkoutImportController.php</jms:reference-file>
-        <source>workout.import.tcx.notUploaded</source>
-        <target>File not uploaded.</target>
+      <trans-unit id="c46d6aa9f898c9fe41eb632a2620a4f63db6d057" resname="workout.import.file.help">
+        <jms:reference-file line="21">views/WorkoutImport/file.html.twig</jms:reference-file>
+        <source>workout.import.file.help</source>
+        <target>Currently only TCX files are supported. TCX is an XML file introduced by Garmin. Only files exported by Endomondo was tested. Full compatibility is not guaranteed.</target>
       </trans-unit>
-      <trans-unit id="9bd98747fa8de8d272f025542966ded8a75ca6aa" resname="workout.import.tcx.title">
-        <jms:reference-file line="22">views/WorkoutImport/tcx.html.twig</jms:reference-file>
-        <source>workout.import.tcx.title</source>
-        <target>Import TCX files</target>
+      <trans-unit id="3dc419f4c2c4e75ec009affed960fe40e9423291" resname="workout.import.file.invalidFile">
+        <jms:reference-file line="72">AppBundle/Controller/WorkoutImportController.php</jms:reference-file>
+        <source>workout.import.file.invalidFile</source>
+        <target>Invalid file.</target>
       </trans-unit>
-      <trans-unit id="61e61d2acee89c053d5e56936387063a3f6d9fd6" resname="workout.import.tcx.uploadMore">
-        <jms:reference-file line="49">views/WorkoutImport/tcx.html.twig</jms:reference-file>
-        <source>workout.import.tcx.uploadMore</source>
-        <target>Upload more...</target>
+      <trans-unit id="a1462d86736788a57bdef54882f14fa64a614973" resname="workout.import.file.title">
+        <jms:reference-file line="16">views/WorkoutImport/file.html.twig</jms:reference-file>
+        <source>workout.import.file.title</source>
+        <target>Import workouts from files.</target>
+      </trans-unit>
+      <trans-unit id="852660daed23530c130d8ff6f06eb704965c8754" resname="workout.import.file.uploadMore">
+        <jms:reference-file line="43">views/WorkoutImport/file.html.twig</jms:reference-file>
+        <source>workout.import.file.uploadMore</source>
+        <target>Upload more</target>
       </trans-unit>
       <trans-unit id="7a6486ee298f0d84856c1e8f155f03fadc1fcb68" resname="workout.list.columns.action">
         <jms:reference-file line="25">views/Workout/index.html.twig</jms:reference-file>
@@ -243,30 +248,40 @@
         <source>workout.list.columns.sport</source>
         <target>Sport</target>
       </trans-unit>
-      <trans-unit id="dd390afb163bbfd1e81eaf49e7a92d25cb07d8d3" resname="workout.list.tcxImport">
+      <trans-unit id="9a422651d5763d6d49bf1fc8e3db38c6d7fe917c" resname="workout.list.fileImport">
         <jms:reference-file line="10">views/Workout/index.html.twig</jms:reference-file>
-        <source>workout.list.tcxImport</source>
-        <target>Import from TCX files</target>
+        <source>workout.list.fileImport</source>
+        <target>Import from files</target>
       </trans-unit>
       <trans-unit id="a09289212caf6c3d2fd0ce910d7f0e91648a290b" resname="workout.list.title">
         <jms:reference-file line="6">views/Workout/index.html.twig</jms:reference-file>
         <source>workout.list.title</source>
         <target>Workouts</target>
       </trans-unit>
-      <trans-unit id="f9cf7ea7af147ae14b986aa178c4930c4e5a6e7b" resname="workout.tcxImport.duplicateWorkout">
-        <jms:reference-file line="85">AppBundle/Controller/WorkoutImportController.php</jms:reference-file>
-        <source>workout.tcxImport.duplicateWorkout</source>
-        <target>Duplicate detected.</target>
+      <trans-unit id="a6be2c760d3d83d173c884e89551bf432bc886db" resname="workout.view.summary.averageHeartRate">
+        <jms:reference-file line="50">views/Workout/view.html.twig</jms:reference-file>
+        <source>workout.view.summary.averageHeartRate</source>
+        <target>Average Heart Rate</target>
       </trans-unit>
-      <trans-unit id="7db13484d399849519b361101867ba38985575d9" resname="workout.tcxImport.success">
-        <jms:reference-file line="94">AppBundle/Controller/WorkoutImportController.php</jms:reference-file>
-        <source>workout.tcxImport.success</source>
-        <target>Success</target>
+      <trans-unit id="33f63c174e2eb908ecd954731e836f1995d13314" resname="workout.view.summary.calories">
+        <jms:reference-file line="42">views/Workout/view.html.twig</jms:reference-file>
+        <source>workout.view.summary.calories</source>
+        <target>Calories</target>
       </trans-unit>
-      <trans-unit id="8ac1a08047322d5d66097f094d5063ec87e9d959" resname="workout.view.tcxExport">
-        <jms:reference-file line="29">views/Workout/view.html.twig</jms:reference-file>
-        <source>workout.view.tcxExport</source>
-        <target>TCX Export</target>
+      <trans-unit id="9a8ef41dd9435c2e2b615bf2ed69196bb311d26b" resname="workout.view.summary.distance">
+        <jms:reference-file line="26">views/Workout/view.html.twig</jms:reference-file>
+        <source>workout.view.summary.distance</source>
+        <target>Distance</target>
+      </trans-unit>
+      <trans-unit id="a68be6288a63cc5d4603c8c840619a2a872fca70" resname="workout.view.summary.duration">
+        <jms:reference-file line="34">views/Workout/view.html.twig</jms:reference-file>
+        <source>workout.view.summary.duration</source>
+        <target>Duration</target>
+      </trans-unit>
+      <trans-unit id="09b0795cd0c6e4afaae7f7dc3f638e59c33a0991" resname="workout.view.summary.maximumHeartRate">
+        <jms:reference-file line="58">views/Workout/view.html.twig</jms:reference-file>
+        <source>workout.view.summary.maximumHeartRate</source>
+        <target>Maximum Heart Rate</target>
       </trans-unit>
       <trans-unit id="77be3fdaf6315977a470386ed7e49b7b764dcdd7" resname="workout.view.title">
         <jms:reference-file line="6">views/Workout/view.html.twig</jms:reference-file>

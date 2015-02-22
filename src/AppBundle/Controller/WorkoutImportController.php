@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Base\WorkoutImport\Tcx\Parser;
+use AppBundle\Base\WorkoutImport\Tracker\Endomondo\EndomondoAPI;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -30,11 +31,11 @@ class WorkoutImportController extends Controller {
     /**
      * Tcx import page
      *
-     * @Route("/tcx", name="workout_import_tcx")
+     * @Route("/file", name="workout_import_file")
      * @Method("GET")
      * @Template()
      */
-    public function tcxAction()
+    public function fileAction()
     {
         return array();
     }
@@ -42,12 +43,12 @@ class WorkoutImportController extends Controller {
     /**
      * handle ajax tcx uploads
      *
-     * @Route("/tcx/ajax/upload", name="workout_import_tcx_ajax_upload")
+     * @Route("/file/ajax/upload", name="workout_import_file_ajax_upload")
      * @Method("POST")
      * @param Request $request
      * @return JsonResponse
      */
-    public function tcxAjaxUploadAction(Request $request){
+    public function fileAjaxUploadAction(Request $request){
         $file = $request->files->get('file');
         $responseData = array();
         if(!$file){
@@ -60,15 +61,15 @@ class WorkoutImportController extends Controller {
             return new JsonResponse($responseData);
         }
 
-        $tcxContent = file_get_contents($file->getPathName());
-        $tcxParser = new Parser(new \SimpleXMLElement($tcxContent));
+        $fileContent = file_get_contents($file->getPathName());
+        $tcxParser = new Parser(new \SimpleXMLElement($fileContent));
         $tcxParser->parse();
         $importService = $this->get('app.workout_import');
         foreach($tcxParser->getWorkouts() as $workout) {
             if (!$workout->isValid()) {
                 $responseData[] = array(
                     'datetime' => $workout->getStartDateTime()->format('Y-m-d H:i:s'),
-                    'message' => $this->get('translator')->trans('workout.import.tcx.invalidFile'),
+                    'message' => $this->get('translator')->trans('workout.import.file.invalidFile'),
                     'debug' => $workout->getErrorMessage(),
                     'success' => false,
                 );
@@ -82,7 +83,7 @@ class WorkoutImportController extends Controller {
             if($duplicateEntity) {
                 $responseData[] = array(
                     'datetime' => $workout->getStartDateTime()->format('Y-m-d H:i:s'),
-                    'message' => $this->get('translator')->trans('workout.tcxImport.duplicateWorkout'),
+                    'message' => $this->get('translator')->trans('workout.fileImport.duplicateWorkout'),
                     'debug' => null,
                     'success' => false
                 );
@@ -91,7 +92,7 @@ class WorkoutImportController extends Controller {
             $importService->saveUserWorkout($workout, $this->getUser());
             $responseData[] = array(
                 'datetime' => $workout->getStartDateTime()->format('Y-m-d H:i:s'),
-                'message' => $this->get('translator')->trans('workout.tcxImport.success'),
+                'message' => $this->get('translator')->trans('workout.fileImport.success'),
                 'debug' => null,
                 'success' => true
             );
@@ -99,8 +100,5 @@ class WorkoutImportController extends Controller {
         $this->getDoctrine()->getManager()->flush();
         return new JsonResponse($responseData);
     }
-
-
-
 
 }

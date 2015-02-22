@@ -18,14 +18,53 @@
 
     <div class="panel-heading">
         <h2 class="pull-left">{{ entity.getSport().getDisplayName()|capitalize }}, {{ entity.getStartDatetime()|date('Y-m-d H:i:s') }}</h2>
-        <div class="pull-right header-buttons">
-            <a href="" class="btn btn-primary btn-lg">
-                <span class="glyphicon glyphicon-export"></span>
-                {{ 'workout.view.tcxExport'|trans }}
-            </a>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row workoutSummary">
+        <div class="col-md-2">
+            <span class="summaryTitle">
+                {{ 'workout.view.summary.distance'|trans }}
+            </span>
+            <span class="summaryValue">
+                {{ entity.getDistanceMeters()|distance }}
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="summaryTitle">
+                {{ 'workout.view.summary.duration'|trans }}
+            </span>
+            <span class="summaryValue">
+                {{ entity.getTotalTimeSeconds()|duration  }}
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="summaryTitle">
+                {{ 'workout.view.summary.calories'|trans }}
+            </span>
+            <span class="summaryValue">
+                {{ entity.getCalories()  }}
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="summaryTitle">
+                {{ 'workout.view.summary.averageHeartRate'|trans }}
+            </span>
+            <span class="summaryValue">
+                {{ entity.getAverageHeartRateBpm()  }}
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="summaryTitle">
+                {{ 'workout.view.summary.maximumHeartRate'|trans }}
+            </span>
+            <span class="summaryValue">
+                {{ entity.getMaximumHeartRateBpm()  }}
+            </span>
+        </div>
+        <div class="col-md-2">
+
         </div>
     </div>
-    <div class="cb"></div>
     <div id="workoutMapCanvas" class="mapCanvas">
 
     </div>

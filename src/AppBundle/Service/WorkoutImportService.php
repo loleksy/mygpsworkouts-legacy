@@ -42,8 +42,8 @@ class WorkoutImportService {
         $workoutEntity->setTotalTimeSeconds($importedWorkout->getTotalTimeSeconds());
         $workoutEntity->setDistanceMeters($importedWorkout->getDistanceMeters());
         $workoutEntity->setCalories($importedWorkout->getCalories());
-        $workoutEntity->setAverageHearthRateBpm($importedWorkout->getAverageHeartRateBpm());
-        $workoutEntity->setMaximumHearthRateBpm($importedWorkout->getMaximumHeartRateBpm());
+        $workoutEntity->setAverageHeartRateBpm($importedWorkout->getAverageHeartRateBpm());
+        $workoutEntity->setMaximumHeartRateBpm($importedWorkout->getMaximumHeartRateBpm());
         $this->em->persist($workoutEntity);
         $index=0;
         foreach($importedWorkout->getTrackPoints() as $importedTrackPoint){
@@ -98,7 +98,7 @@ class WorkoutImportService {
         $trackpoint->setLat($importedTrackpoint->getLat());
         $trackpoint->setLng($importedTrackpoint->getLng());
         $trackpoint->setAltitudeMeters($importedTrackpoint->getAltitudeMeters());
-        $trackpoint->setHearthRateBpm($importedTrackpoint->getHearthRateBpm());
+        $trackpoint->setHeartRateBpm($importedTrackpoint->getHeartRateBpm());
         $this->em->persist($trackpoint);
         return $trackpoint;
     }
