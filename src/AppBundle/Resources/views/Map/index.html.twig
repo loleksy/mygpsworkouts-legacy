@@ -1,0 +1,47 @@
+{% extends 'AppBundle::layouts/filled.html.twig' %}
+
+{% block javascripts %}
+    {{- parent() -}}
+    <script type="text/javascript">
+        $(function(){
+            //datepickers
+            $('.input-daterange').datepicker({
+                format: 'yyyy-mm-dd',
+                language: '{{ app.request.locale }}'
+            });
+            var multipleWorkoutsMapPreview = new myGpsWorkouts.plugins.MultipleWorkoutsMapPreview();
+            //multipleWorkoutsMapPreview.render();
+        });
+    </script>
+{% endblock %}
+
+
+{% block content -%}
+
+    <div class="panel-heading">
+        <h2 class="pull-left">{{ 'map.title'|trans }}</h2>
+        <div class="pull-right header-inputs">
+            <div class="form-inline input-daterange">
+                <div class="form-group">
+                    <input type="text" class="form-control datepicker" id="startDateInput">
+                </div>
+                <div class="form-group">
+                    <label for="endDateInput">{{ 'map.toDate.label'|trans }}</label>
+                    <input type="text" class="form-control datepicker" id="endDateInput">
+                </div>
+                <div class="form-group">
+                    <select class="selectpicker" multiple title="{{ 'map.sportSelect.nothingSelected'|trans }}">
+                        {% for sportEntity in sportEntities %}
+                            <option value="{{ sportEntity.getId() }}"> {{ sportEntity.getDisplayName() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="workoutsMapCanvas" class="mapCanvas"></div>
+
+
+
+{% endblock %}
