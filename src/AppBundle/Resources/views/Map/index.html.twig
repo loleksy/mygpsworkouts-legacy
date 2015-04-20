@@ -10,7 +10,7 @@
                 language: '{{ app.request.locale }}'
             });
             var multipleWorkoutsMapPreview = new myGpsWorkouts.plugins.MultipleWorkoutsMapPreview();
-            //multipleWorkoutsMapPreview.render();
+            multipleWorkoutsMapPreview.render();
         });
     </script>
 {% endblock %}
@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div id="workoutsMapCanvas" class="mapCanvas"></div>
+    <div id="allWorkoutsMapCanvas" class="mapCanvas"></div>
 
 
 

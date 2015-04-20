@@ -16,13 +16,11 @@ myGpsWorkouts.plugins.WorkoutMapPreview.prototype.initState = function(){
     this.mapData = {};
     this.mapData.markers = {};
     this.mapData.markers.checkpoints = new Array();
-    this.mapData.isFullScreen = false;
-    this.imageGenerator = new myGpsWorkouts.plugins.WorkoutMarkerImageGenerator();
+    this.imageGenerator = new myGpsWorkouts.core.WorkoutMarkerImageGenerator();
     this.mapData.markerIconSettings = {
         size: new google.maps.Size(24, 24),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(12, 12)
-
     }
 
 };
@@ -47,7 +45,6 @@ myGpsWorkouts.plugins.WorkoutMapPreview.prototype.setData = function(data) {
 
 myGpsWorkouts.plugins.WorkoutMapPreview.prototype.render = function(){
     this.initMap();
-    this.addResizeButton();
     this.renderPolyLine();
     this.fitMapToPolyLineBounds();
     this.renderStartMarker();
@@ -62,43 +59,14 @@ myGpsWorkouts.plugins.WorkoutMapPreview.prototype.initMap = function(){
         zoom: 2
     };
     this.mapData.map = new google.maps.Map(document.querySelector(this.selectors.map), mapOptions);
-};
-
-myGpsWorkouts.plugins.WorkoutMapPreview.prototype.addResizeButton = function(){
-    var controlDiv = document.createElement('div');
-    controlDiv.style.paddingTop = '4px';
-
-    // Set CSS for the control interior
-    var resizeButton = document.createElement('button');
-    resizeButton.className = "btn btn-default btn-xs";
-
-
-    resizeButton.innerHTML = '<span class="glyphicon glyphicon-resize-full"></span>';
-    controlDiv.appendChild(resizeButton );
-
-    // Setup the click event listeners: simply set the map to
+    this.fullScreenMapToggle = new myGpsWorkouts.core.FullScreenMapToggle(this.mapData.map);
+    this.fullScreenMapToggle.addResizeButton();
     var that = this;
-    google.maps.event.addDomListener(resizeButton, 'click', function(e) {
-        that.onResizeButtonClicked(e);
-    });
-
-    controlDiv.index = 1;
-    this.mapData.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+    this.fullScreenMapToggle.onMapResized = function(){
+        that.fitMapToPolyLineBounds();
+    };
 };
 
-myGpsWorkouts.plugins.WorkoutMapPreview.prototype.onResizeButtonClicked = function(event){
-    if(!this.mapData.isFullScreen){
-        $(event.currentTarget).find('span').removeClass('glyphicon-resize-full').addClass('glyphicon-resize-small');
-        $(this.selectors.map).addClass('fullScreen');
-    }
-    else{
-        $(event.currentTarget).find('span').removeClass('glyphicon-resize-small').addClass('glyphicon-resize-full');
-        $(this.selectors.map).removeClass('fullScreen');
-    }
-    google.maps.event.trigger(this.mapData.map, 'resize');
-    this.fitMapToPolyLineBounds();
-    this.mapData.isFullScreen = !this.mapData.isFullScreen;
-};
 
 myGpsWorkouts.plugins.WorkoutMapPreview.prototype.renderPolyLine = function(){
     this.mapData.polyLine = new google.maps.Polyline({
