@@ -38,11 +38,11 @@
 
             </div>
             <div id="upload-completed-actions" style="display:none;">
-                <a href="" class="btn btn-success">
+                <a href="{{ path('workout_import_file') }}" class="btn btn-success">
                     <span class="glyphicon glyphicon-plus"></span>
                     {{ 'workout.import.file.uploadMore'|trans }}
                 </a>
-                <a href="" class="btn btn-primary">
+                <a href="{{ path('workout') }}" class="btn btn-primary">
                     <span class="glyphicon glyphicon-arrow-left"></span>
                     {{ 'workout.import.file.backToList'|trans }}
                 </a>

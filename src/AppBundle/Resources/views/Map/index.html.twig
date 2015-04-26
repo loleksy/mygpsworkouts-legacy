@@ -13,7 +13,8 @@
                 'ajaxWorkoutsUrl': '{{ path('ajax_workout_index') }}',
                 'workoutPreviewUrlTemplate': '{{ path('workout_view', { 'id': '__ID__' }) }}'
             });
-            multipleWorkoutsMapPreview.start();
+            setTimeout(function(){ multipleWorkoutsMapPreview.start(); }, 500);
+
         });
     </script>
 {% endblock %}

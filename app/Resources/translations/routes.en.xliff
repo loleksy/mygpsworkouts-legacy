@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-02-22T20:01:31Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2015-04-26T13:35:45Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="60e13781b19beb77fbaebaa00fdb53c442abc303" resname="ajax_workout_index">
+        <source>/ajax/workout</source>
+        <target state="new">/ajax/workout</target>
+      </trans-unit>
+      <trans-unit id="ab61156c7c71c8b171f46f6a54e3132619865aa2" resname="ajax_workout_trackpoints_view">
+        <source>/ajax/workout/{id}/trackpoint</source>
+        <target state="new">/ajax/workout/{id}/trackpoint</target>
+      </trans-unit>
+      <trans-unit id="321388a866631f246992580441c3020857ef4872" resname="ajax_workout_upload">
+        <source>/ajax/workout/</source>
+        <target state="new">/ajax/workout/</target>
+      </trans-unit>
+      <trans-unit id="44ab39b5ae3a57440b34526540e43aaf813a0eaa" resname="ajax_workout_view">
+        <source>/ajax/workout/{id}</source>
+        <target state="new">/ajax/workout/{id}</target>
+      </trans-unit>
       <trans-unit id="3e7a1eb65964daab6c8503cea70e628e3f933ce0" resname="fos_user_change_password">
         <source>/profile/change-password</source>
         <target state="new">/profile/change-password</target>
@@ -45,6 +61,10 @@
       <trans-unit id="568be0fa2023d1a447e7bd150dda7068ece26898" resname="homepage">
         <source>/</source>
         <target state="new">/</target>
+      </trans-unit>
+      <trans-unit id="37745ed7a0f005fb14522c5cc7c1ba3d9e0df579" resname="map">
+        <source>/map/</source>
+        <target state="new">/map/</target>
       </trans-unit>
       <trans-unit id="8ab6a8a0cf069e3783c6f59163ad03a051310556" resname="sport">
         <source>/sport/</source>

@@ -122,7 +122,6 @@ myGpsWorkouts.plugins.MultipleWorkoutsMapPreview.prototype.fetchTrackpoints = fu
         else{
             var url = that.options.ajaxWorkoutsUrl + '/' + workoutId + '/trackpoint';
             $.get(url, function(response){
-                console.log('fetched');
                 that.storage.setTrackpoints(workoutId, response, function(){});
                 callback(response);
             });

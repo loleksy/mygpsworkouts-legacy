@@ -23,3 +23,5 @@ monolog:
             level: debug
         console:
             type:  console
+assetic:
+     read_from: "%kernel.root_dir%/../public_html"
