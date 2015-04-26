@@ -15,9 +15,9 @@ Online demo available at  [http://mygpsworkouts.loleksy.pl](http://mygpsworkouts
  
 Screenshots:
 
-[Workouts map](master/src/AppBundle/Resources/public/images/demo1.png?raw=true "Workouts map")
-[Workout preview](master/src/AppBundle/Resources/public/images/demo2.png?raw=true "Sports list")
-[Sports list](master/src/AppBundle/Resources/public/images/demo3.png?raw=true "Sports list")
+![Workouts map](src/AppBundle/Resources/public/images/demo1.png?raw=true "Workouts map")
+![Workout preview](src/AppBundle/Resources/public/images/demo2.png?raw=true "Sports list")
+![Sports list](src/AppBundle/Resources/public/images/demo3.png?raw=true "Sports list")
 
 Asset sources:
 
