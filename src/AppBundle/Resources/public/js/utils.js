@@ -42,6 +42,12 @@ myGpsWorkouts.utils = {
                 var m = (metres-olddist)/(dist-olddist);
                 return new google.maps.LatLng( p1.lat() + (p2.lat()-p1.lat())*m, p1.lng() + (p2.lng()-p1.lng())*m);
             }
+    },
+    formatDate: function(date){
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth()+1).toString(); // getMonth() is zero-based
+        var dd  = date.getDate().toString();
+        return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]);
     }
 };
 

@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="workout", indexes={@ORM\Index(name="fk_table1_users1_idx", columns={"user_id"}), @ORM\Index(name="fk_table1_sports1_idx", columns={"sport_id"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\WorkoutRepository")
  */
-class Workout
+class Workout implements \JsonSerializable
 {
     /**
      * @var \DateTime
@@ -337,4 +337,23 @@ class Workout
         return $this->trackpoints;
     }
 
+    /**
+     * (PHP 5 &gt;= 5.4.0)<br/>
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     */
+    function jsonSerialize()
+    {
+        return array(
+            'id' => $this->getId(),
+            'startTimestamp' => $this->getStartDatetime()->getTimestamp(),
+            'distanceMeters' => $this->getDistanceMeters(),
+            'totalTimeSeconds' => $this->getTotalTimeSeconds(),
+            'sport' =>  array(
+                'id' => $this->getSport()->getId()
+            )
+        );
+    }
 }
