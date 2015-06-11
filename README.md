@@ -5,9 +5,10 @@ Only files exported from Endomondo was tested.
 This application was developed to learn Symfony 2 framework and play with javascript and google maps API.
 
 Main features:
+* user accounts
 * import TCX workouts
 * workout preview on a map
-* display all workouts on single map (data is cached using LargeLocalStorageLibrary)
+* display all workouts on single map (data is cached using LargeLocalStorage library)
 * manage sports (display name, color)
 * multilanguage support (english and polish)
 

@@ -38,7 +38,8 @@ class WorkoutRepository extends EntityRepository {
             $builder->andWhere('w.startDatetime >= :startDt')->setParameter('startDt', $startDt);
         }
         if($endDt){
-            $builder->andWhere('w.startDatetime <= :endDt')->setParameter('endDt', $endDt);
+            $endDt->add(new \DateInterval('P1D'));
+            $builder->andWhere('w.startDatetime < :endDt')->setParameter('endDt', $endDt);
         }
         if($sportIds){
             $builder->andWhere('w.sport IN (:sportIds)')->setParameter('sportIds', $sportIds);

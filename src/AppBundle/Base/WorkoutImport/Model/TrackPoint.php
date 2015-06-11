@@ -6,7 +6,7 @@
  * Time: 18:22
  */
 
-namespace AppBundle\Base\WorkoutImport;
+namespace AppBundle\Base\WorkoutImport\Model;
 
 
 class TrackPoint {
@@ -115,10 +115,6 @@ class TrackPoint {
     public function setHeartRateBpm($heart_rate_bpm)
     {
         $this->heart_rate_bpm = $heart_rate_bpm;
-    }
-
-    public function isValid(){
-        return $this->getLat() && $this->getLng() && $this->getDatetime();
     }
 
 

@@ -1,45 +1,34 @@
 <?php
 
+namespace AppBundle\Base\WorkoutImport\Parser;
 
-namespace AppBundle\Base\WorkoutImport\Tcx;
+use AppBundle\Base\WorkoutImport\Model\Workout;
+use AppBundle\Base\WorkoutImport\Model\TrackPoint;
 
+class TcxParser {
 
-use AppBundle\Base\WorkoutImport\TrackPoint;
-use AppBundle\Base\WorkoutImport\Workout;
-use AppBundle\Base\WorkoutImport\WorkoutImportInterface;
-
-class Parser implements WorkoutImportInterface {
-
-    /**
-     * @var array
-     */
-    protected $workouts;
     /**
      * @var \SimpleXMLElement
      */
-    protected $xmlobj;
+    protected $xmlObj;
 
     public function __construct(\SimpleXMLElement $xmlObject){
         $this->xmlObj = $xmlObject;
-        $this->workouts = array();
-    }
-
-    public function parse(){
-        $this->workouts = array();
-        if(isset($this->xmlObj->Activities) && isset($this->xmlObj->Activities->Activity)){
-            foreach($this->xmlObj->Activities->Activity as $activity){
-                $this->workouts[] = $this->parseActivity($activity);
-            }
-        }
-
     }
 
     /**
-     * @return \AppBundle\Base\WorkoutImport\Workout[];
+     * @return \AppBundle\Base\WorkoutImport\Model\Workout[];
      */
-    public function getWorkouts(){
-        return $this->workouts;
+    public function parseWorkouts(){
+        $workouts = array();
+        if(isset($this->xmlObj->Activities) && isset($this->xmlObj->Activities->Activity)){
+            foreach($this->xmlObj->Activities->Activity as $activity){
+                $workouts[] = $this->parseActivity($activity);
+            }
+        }
+        return $workouts;
     }
+
 
     protected function parseActivity(\SimpleXMLElement $activity){
         $workout = new Workout();
@@ -103,7 +92,7 @@ class Parser implements WorkoutImportInterface {
             || !isset($trackPoint->Position->LongitudeDegrees)
             || !isset($trackPoint->Time)
         ){
-            return;
+            return null;
         }
         $obj = new TrackPoint();
         $obj->setLat((string)$trackPoint->Position->LatitudeDegrees);

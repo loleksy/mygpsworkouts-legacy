@@ -8,13 +8,14 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Base\WorkoutImport\Validator\WorkoutValidator;
 use \Doctrine\ORM\EntityManager;
 use \AppBundle\Entity\User;
-use \AppBundle\Base\WorkoutImport\Workout as ImportedWorkout;
-use \AppBundle\Base\WorkoutImport\TrackPoint as ImportedTrackpoint;
+use \AppBundle\Base\WorkoutImport\Model\Workout as ImportedWorkout;
+use \AppBundle\Base\WorkoutImport\Model\TrackPoint as ImportedTrackPoint;
 use \AppBundle\Entity\Workout as WorkoutEntity;
 use \AppBundle\Entity\Sport as SportEntity;
-use \AppBundle\Entity\Trackpoint as TrackpointEntity;
+use \AppBundle\Entity\Trackpoint as TrackPointEntity;
 
 class WorkoutImportService {
 
@@ -24,17 +25,57 @@ class WorkoutImportService {
      */
     protected $em;
 
+    /**
+     * @var string|null
+     */
+    protected $lastValidationErrorMessage;
+
+    const IMPORT_RESULT_SUCCESS = 0;
+    const IMPORT_RESULT_DUPLICATE = 1;
+    const IMPORT_RESULT_INVALID = 2;
+
     public function __construct(EntityManager $entityManager)
     {
         $this->em = $entityManager;
     }
+
+    public function importWorkout(ImportedWorkout $importedWorkout, User $user){
+        if(!$this->isWorkoutValid($importedWorkout)){
+            return static::IMPORT_RESULT_INVALID;
+        }
+        if($this->isWorkoutDuplicated($importedWorkout, $user)){
+            return static::IMPORT_RESULT_DUPLICATE;
+        }
+        $this->saveWorkoutEntity($importedWorkout, $user);
+        return static::IMPORT_RESULT_SUCCESS;
+    }
+
+    public function getLastValidationErrorMessage(){
+        return $this->lastValidationErrorMessage;
+    }
+
+    protected function isWorkoutValid(ImportedWorkout $importedWorkout){
+        $validator = new WorkoutValidator($importedWorkout);
+        $this->lastValidationErrorMessage = $validator->validate();
+        return (bool)!$this->lastValidationErrorMessage;
+    }
+
+    protected function isWorkoutDuplicated(ImportedWorkout $importedWorkout, User $user){
+        $duplicateEntity = $this->em->getRepository('AppBundle:Workout')->findOneBy(array(
+            'user' => $user,
+            'startDatetime' => $importedWorkout->getStartDateTime()
+        ));
+        return (bool)$duplicateEntity;
+    }
+
+
 
     /**
      * @param ImportedWorkout $importedWorkout
      * @param User $user
      * @return WorkoutEntity
      */
-    public function saveUserWorkout(ImportedWorkout $importedWorkout, User $user){
+    protected function saveWorkoutEntity(ImportedWorkout $importedWorkout, User $user){
         $workoutEntity = new WorkoutEntity();
         $workoutEntity->setUser($user);
         $workoutEntity->setSport($this->getSportEntity($importedWorkout, $user));
@@ -47,7 +88,7 @@ class WorkoutImportService {
         $this->em->persist($workoutEntity);
         $index=0;
         foreach($importedWorkout->getTrackPoints() as $importedTrackPoint){
-            $this->generateTrackpointEntity($importedTrackPoint, $workoutEntity, $index);
+            $this->saveTrackpointEntity($importedTrackPoint, $workoutEntity, $index);
             $index+=1;
         }
         return $workoutEntity;
@@ -64,7 +105,7 @@ class WorkoutImportService {
             'name' => $workout->getSport()
         ));
         if(!$sport){
-            $sport = $this->generateSportEntity($workout,$user);
+            $sport = $this->saveSportEntity($workout,$user);
         }
         return $sport;
     }
@@ -74,33 +115,37 @@ class WorkoutImportService {
      * @param User $user
      * @return SportEntity
      */
-    protected function generateSportEntity(ImportedWorkout $workout, User $user){
+    protected function saveSportEntity(ImportedWorkout $workout, User $user){
         $sport = new SportEntity();
         $sport->setUser($user);
         $sport->setName($workout->getSport());
         $sport->setDisplayName($workout->getSport());
-        $sport->setColor('#'.dechex(rand(0x000000, 0xFFFFFF)));
+        $sport->setColor($this->getRandomSportColor());
         $this->em->persist($sport);
         return $sport;
     }
 
+    protected function getRandomSportColor(){
+        return '#'.dechex(rand(0x000000, 0xFFFFFF));
+    }
+
     /**
-     * @param ImportedTrackpoint $importedTrackpoint
+     * @param ImportedTrackPoint $importedTrackPoint
      * @param WorkoutEntity $workoutEntity
      * @param $index
-     * @return TrackpointEntity
+     * @return TrackPointEntity
      */
-    protected function generateTrackpointEntity(ImportedTrackpoint $importedTrackpoint, WorkoutEntity $workoutEntity, $index){
-        $trackpoint = new TrackpointEntity();
-        $trackpoint->setWorkout($workoutEntity);
-        $trackpoint->setDatetime($importedTrackpoint->getDatetime());
-        $trackpoint->setIndex($index);
-        $trackpoint->setLat($importedTrackpoint->getLat());
-        $trackpoint->setLng($importedTrackpoint->getLng());
-        $trackpoint->setAltitudeMeters($importedTrackpoint->getAltitudeMeters());
-        $trackpoint->setHeartRateBpm($importedTrackpoint->getHeartRateBpm());
-        $this->em->persist($trackpoint);
-        return $trackpoint;
+    protected function saveTrackPointEntity(ImportedTrackPoint $importedTrackPoint, WorkoutEntity $workoutEntity, $index){
+        $trackPoint = new TrackpointEntity();
+        $trackPoint->setWorkout($workoutEntity);
+        $trackPoint->setDatetime($importedTrackPoint->getDatetime());
+        $trackPoint->setIndex($index);
+        $trackPoint->setLat($importedTrackPoint->getLat());
+        $trackPoint->setLng($importedTrackPoint->getLng());
+        $trackPoint->setAltitudeMeters($importedTrackPoint->getAltitudeMeters());
+        $trackPoint->setHeartRateBpm($importedTrackPoint->getHeartRateBpm());
+        $this->em->persist($trackPoint);
+        return $trackPoint;
     }
 
 

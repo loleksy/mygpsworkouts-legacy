@@ -6,19 +6,13 @@
  * Time: 18:19
  */
 
-namespace AppBundle\Base\WorkoutImport;
+namespace AppBundle\Base\WorkoutImport\Model;
 
 
-use AppBundle\Entity\User;
 use Location\Coordinate;
 use Location\Distance\Haversine;
 
 class Workout {
-
-    /**
-     * @var string|null
-     */
-    protected $errorMessage = null;
 
     /**
      * @var string
@@ -55,8 +49,6 @@ class Workout {
      */
     protected $trackPoints;
 
-
-
     /**
      * @var int
      */
@@ -67,13 +59,6 @@ class Workout {
     public function __construct(){
         $this->sport = 'unknown';
         $this->trackPoints = array();
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getErrorMessage(){
-        return $this->errorMessage;
     }
 
     /**
@@ -238,28 +223,7 @@ class Workout {
         $this->trackPoints[] = $trackPoint;
     }
 
-    /**
-     * Is workout valid?
-     * @return bool
-     */
-    public function isValid(){
-        if(count($this->getTrackPoints())<2){
-            $this->errorMessage = 'No trackpoints';
-            return false; //my GPS! workouts ;)
-        }
-        if(!$this->getStartDateTime()){
-            $this->errorMessage = 'No startDatetime';
-            return false;
-        }
-        foreach($this->getTrackPoints() as $trackPoint){
-            if(!$trackPoint->isValid()){
-                $this->errorMessage = 'invalid trackpoint detected';
-                return false;
-            }
-        }
-        return true;
 
-    }
 
     public function getHeartRateValues(){
         $values = array();
@@ -270,48 +234,5 @@ class Workout {
         }
         return $values;
     }
-
-    /**
-     * @return \Workout
-     */
-//    public function saveInDb(\User $user){
-//        $model = new \Workout();
-//        \DB::transaction(function() use ($model, $user)
-//        {
-//            $model->user()->associate($user);
-//            $sport = $user->sports()->where('user_id', $user->id)->where('name', $this->getSport())->first();
-//            if(!$sport){
-//                $sport = new \Sport();
-//                $sport->name = $this->getSport();
-//                $sport->display_name = $this->getSport();
-//                $sport->color = '#'.dechex(rand(0x000000, 0xFFFFFF));
-//                $sport->user()->associate($user);
-//                $sport->save();
-//            }
-//            $model->sport()->associate($sport);
-//            $model->start_datetime = $this->getStartDateTime()->format('Y-m-d H:i:s');
-//            $model->total_time_seconds  = $this->getTotalTimeSeconds();
-//            $model->distance_meters = $this->getDistanceMeters();
-//            $model->calories = $this->getCalories();
-//            $model->average_heart_rate_bpm = $this->getAverageHeartRateBpm();
-//            $model->maximum_heart_rate_bpm = $this->getMaximumHeartRateBpm();
-//            $model->save();
-//            $index = 0;
-//            foreach($this->getTrackPoints() as $trackpoint){
-//                $trackpointModel = new \Trackpoint();
-//                $trackpointModel->workout()->associate($model);
-//                $trackpointModel->datetime = $trackpoint->getDatetime()->format('Y-m-d H:i:s');
-//                $trackpointModel->index = $index;
-//                $trackpointModel->lat = $trackpoint->getLat();
-//                $trackpointModel->lng = $trackpoint->getLng();
-//                $trackpointModel->altitude_meters = $trackpoint->getAltitudeMeters();
-//                $trackpointModel->heart_rate_bpm = $trackpoint->getHeartRateBpm();
-//                $index+=1;
-//                $trackpointModel->save();
-//            }
-//        });
-//
-//        return $model;
-//    }
 
 }
