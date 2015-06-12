@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-04-26T13:39:07Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2015-06-12T11:47:31Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -24,14 +24,16 @@
         <target>My GPS Workouts</target>
       </trans-unit>
       <trans-unit id="70e9bbe0f86e6cc800073b80872c2d61bcf4ba77" resname="confirmText">
+        <jms:reference-file line="45">views/Workout/index.html.twig</jms:reference-file>
         <jms:reference-file line="47">views/Sport/index.html.twig</jms:reference-file>
         <source>confirmText</source>
         <target>Are you sure?</target>
       </trans-unit>
       <trans-unit id="9485989ff514b5106b7738850fd73c23e8c1e3f7" resname="delete">
+        <jms:reference-file line="45">views/Workout/index.html.twig</jms:reference-file>
         <jms:reference-file line="71">views/WorkoutImport/file.html.twig</jms:reference-file>
         <jms:reference-file line="47">views/Sport/index.html.twig</jms:reference-file>
-        <jms:reference-file line="115">AppBundle/Controller/WorkoutController.php</jms:reference-file>
+        <jms:reference-file line="116">AppBundle/Controller/WorkoutController.php</jms:reference-file>
         <jms:reference-file line="225">AppBundle/Controller/SportController.php</jms:reference-file>
         <source>delete</source>
         <target>delete</target>
@@ -62,22 +64,22 @@
         <target>Name</target>
       </trans-unit>
       <trans-unit id="9dd7a10758ede59efae37f831c4f3eaef5da6d71" resname="map.sport.apply">
-        <jms:reference-file line="48">views/Map/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">views/Map/index.html.twig</jms:reference-file>
         <source>map.sport.apply</source>
         <target>Apply</target>
       </trans-unit>
       <trans-unit id="fbb511a2086ca1591bb127ece9d02956889ca8a7" resname="map.sportSelect.nothingSelected">
-        <jms:reference-file line="36">views/Map/index.html.twig</jms:reference-file>
+        <jms:reference-file line="37">views/Map/index.html.twig</jms:reference-file>
         <source>map.sportSelect.nothingSelected</source>
         <target>Nothing selected</target>
       </trans-unit>
       <trans-unit id="5487ec920ad936a09ab2177a8ef1b78e095ffcad" resname="map.title">
-        <jms:reference-file line="25">views/Map/index.html.twig</jms:reference-file>
+        <jms:reference-file line="26">views/Map/index.html.twig</jms:reference-file>
         <source>map.title</source>
         <target>Map</target>
       </trans-unit>
       <trans-unit id="0c4f4c5897a941f3514d2354d41b1b62ebf39357" resname="map.toDate.label">
-        <jms:reference-file line="32">views/Map/index.html.twig</jms:reference-file>
+        <jms:reference-file line="33">views/Map/index.html.twig</jms:reference-file>
         <source>map.toDate.label</source>
         <target>to</target>
       </trans-unit>
@@ -122,7 +124,7 @@
         <target>Start upload</target>
       </trans-unit>
       <trans-unit id="35584caeff520a00fbf68f5ae1de96cbe81d81fd" resname="noResults">
-        <jms:reference-file line="50">views/Workout/index.html.twig</jms:reference-file>
+        <jms:reference-file line="60">views/Workout/index.html.twig</jms:reference-file>
         <jms:reference-file line="58">views/Sport/index.html.twig</jms:reference-file>
         <source>noResults</source>
         <target>No results</target>
@@ -209,14 +211,19 @@
         <target>Sports</target>
       </trans-unit>
       <trans-unit id="c2bf29a6b8471b8f4230aad566def9e5df69fede" resname="workout.fileImport.duplicateWorkout">
-        <jms:reference-file line="76">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
+        <jms:reference-file line="72">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
         <source>workout.fileImport.duplicateWorkout</source>
         <target>Duplicate detected.</target>
       </trans-unit>
       <trans-unit id="c236ed7db78e21b96e7cafbe64043aed549ce2ec" resname="workout.fileImport.success">
-        <jms:reference-file line="85">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
+        <jms:reference-file line="64">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
         <source>workout.fileImport.success</source>
         <target>Success</target>
+      </trans-unit>
+      <trans-unit id="ba73035052a4068290d235ac7dbce958c0a43006" resname="workout.flash.deleted">
+        <jms:reference-file line="98">AppBundle/Controller/WorkoutController.php</jms:reference-file>
+        <source>workout.flash.deleted</source>
+        <target>Deleted.</target>
       </trans-unit>
       <trans-unit id="47c788ff04a16847686c4bcd6920b33b6e488ef3" resname="workout.import.file.addFiles">
         <jms:reference-file line="30">views/WorkoutImport/file.html.twig</jms:reference-file>
@@ -234,7 +241,7 @@
         <target>Currently only TCX files are supported. TCX is an XML file introduced by Garmin. Only files exported by Endomondo was tested. Full compatibility is not guaranteed.</target>
       </trans-unit>
       <trans-unit id="3dc419f4c2c4e75ec009affed960fe40e9423291" resname="workout.import.file.invalidFile">
-        <jms:reference-file line="62">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
+        <jms:reference-file line="80">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
         <source>workout.import.file.invalidFile</source>
         <target>Invalid file.</target>
       </trans-unit>

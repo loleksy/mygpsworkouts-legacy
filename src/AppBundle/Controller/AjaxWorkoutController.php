@@ -9,7 +9,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Base\WorkoutImport\Parser\TcxParser;
+use AppBundle\Base\WorkoutImport\DataReader\TcxParser;
 use AppBundle\Service\WorkoutImportService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -33,7 +33,7 @@ class AjaxWorkoutController extends Controller
     /**
      * handle ajax tcx uploads
      *
-     * @Route("/", name="ajax_workout_upload")
+     * @Route("", name="ajax_workout_upload")
      * @Method("POST")
      * @param Request $request
      * @return JsonResponse
@@ -53,7 +53,7 @@ class AjaxWorkoutController extends Controller
 
         $fileContent = file_get_contents($file->getPathName());
         $tcxParser = new TcxParser(new \SimpleXMLElement($fileContent));
-        $workouts = $tcxParser->parseWorkouts();
+        $workouts = $tcxParser->getWorkouts();
         $importService = $this->get('app.workout_import');
         foreach($workouts as $workout) {
             $importResult = $importService->importWorkout($workout, $this->getUser());

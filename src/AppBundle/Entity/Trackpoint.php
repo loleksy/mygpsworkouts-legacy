@@ -68,7 +68,7 @@ class Trackpoint implements \JsonSerializable
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Workout", inversedBy="trackpoints")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="workout_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="workout_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $workout;

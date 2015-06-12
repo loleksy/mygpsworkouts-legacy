@@ -43,14 +43,14 @@ class WorkoutController extends Controller {
             $request->query->get('page', 1)
         );
 
-//        $deleteForms = array();
-//        foreach ($pagination as $entity) {
-//            $deleteForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
-//        }
+        $deleteForms = array();
+        foreach ($pagination as $entity) {
+            $deleteForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
+        }
 
         return array(
             'pagination' => $pagination,
-           // 'deleteForms' => $deleteForms
+            'deleteForms' => $deleteForms
         );
     }
 
@@ -89,12 +89,13 @@ class WorkoutController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AppBundle:Workout')->find($id);
 
-            if (!$entity || !$entity->isOwnedBy($this->getUser())) {
+            if (!$entity || !$this->get('security.authorization_checker')->isGranted('delete', $entity)) {
                 throw $this->createNotFoundException('Unable to find Workout entity.');
             }
 
             $em->remove($entity);
             $em->flush();
+            $request->getSession()->getFlashBag()->add('success', $this->get('translator')->trans('workout.flash.deleted'));
         }
 
         return $this->redirect($this->generateUrl('workout'));

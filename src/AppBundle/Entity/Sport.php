@@ -58,7 +58,7 @@ class Sport
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="sports")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;

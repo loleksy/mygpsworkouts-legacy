@@ -16,6 +16,7 @@ use \AppBundle\Base\WorkoutImport\Model\TrackPoint as ImportedTrackPoint;
 use \AppBundle\Entity\Workout as WorkoutEntity;
 use \AppBundle\Entity\Sport as SportEntity;
 use \AppBundle\Entity\Trackpoint as TrackPointEntity;
+use Doctrine\ORM\EntityManagerInterface;
 
 class WorkoutImportService {
 
@@ -30,11 +31,16 @@ class WorkoutImportService {
      */
     protected $lastValidationErrorMessage;
 
+    /**
+     * @var WorkoutEntity|null
+     */
+    protected $lastImportedWorkout;
+
     const IMPORT_RESULT_SUCCESS = 0;
     const IMPORT_RESULT_DUPLICATE = 1;
     const IMPORT_RESULT_INVALID = 2;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
     }
@@ -46,12 +52,19 @@ class WorkoutImportService {
         if($this->isWorkoutDuplicated($importedWorkout, $user)){
             return static::IMPORT_RESULT_DUPLICATE;
         }
-        $this->saveWorkoutEntity($importedWorkout, $user);
+        $this->lastImportedWorkout = $this->saveWorkoutEntity($importedWorkout, $user);
         return static::IMPORT_RESULT_SUCCESS;
     }
 
     public function getLastValidationErrorMessage(){
         return $this->lastValidationErrorMessage;
+    }
+
+    /**
+     * @return WorkoutEntity|null
+     */
+    public function getLastImportedWorkout(){
+        return $this->lastImportedWorkout;
     }
 
     protected function isWorkoutValid(ImportedWorkout $importedWorkout){
@@ -137,14 +150,15 @@ class WorkoutImportService {
      */
     protected function saveTrackPointEntity(ImportedTrackPoint $importedTrackPoint, WorkoutEntity $workoutEntity, $index){
         $trackPoint = new TrackpointEntity();
-        $trackPoint->setWorkout($workoutEntity);
         $trackPoint->setDatetime($importedTrackPoint->getDatetime());
         $trackPoint->setIndex($index);
         $trackPoint->setLat($importedTrackPoint->getLat());
         $trackPoint->setLng($importedTrackPoint->getLng());
         $trackPoint->setAltitudeMeters($importedTrackPoint->getAltitudeMeters());
         $trackPoint->setHeartRateBpm($importedTrackPoint->getHeartRateBpm());
+        $trackPoint->setWorkout($workoutEntity);
         $this->em->persist($trackPoint);
+        $workoutEntity->getTrackpoints()->add($trackPoint);
         return $trackPoint;
     }
 

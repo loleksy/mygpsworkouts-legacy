@@ -22,7 +22,7 @@
                 <th>{{ 'workout.list.columns.distance'|trans }}</th>
                 <th>{{ 'workout.list.columns.duration'|trans }}</th>
                 <th>{{ 'workout.list.columns.sport'|trans }}</th>
-                <th>{{ 'workout.list.columns.action'|trans }}</th>
+                <th colspan="2">{{ 'workout.list.columns.action'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +37,16 @@
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
                     </td>
+                    <td>
+                            <form action="{{ path('workout_delete', { 'id': entity.id }) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                {{ form_widget(deleteForms[entity.id]._token) }}
+
+                                <button type="submit" name="form[submit]" data-submit-confirm-text="{{ 'confirmText'|trans }}" data-toggle="tooltip" data-placement="left" title="{{ 'delete'|trans }}" class="btn btn-sm btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                     </td>
                 </tr>
                 {% endfor %}
             </tbody>

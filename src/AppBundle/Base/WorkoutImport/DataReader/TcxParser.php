@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Base\WorkoutImport\Parser;
+namespace AppBundle\Base\WorkoutImport\DataReader;
 
 use AppBundle\Base\WorkoutImport\Model\Workout;
 use AppBundle\Base\WorkoutImport\Model\TrackPoint;
 
-class TcxParser {
+class TcxParser implements DataReaderInterface {
 
     /**
      * @var \SimpleXMLElement
@@ -19,7 +19,7 @@ class TcxParser {
     /**
      * @return \AppBundle\Base\WorkoutImport\Model\Workout[];
      */
-    public function parseWorkouts(){
+    public function getWorkouts(){
         $workouts = array();
         if(isset($this->xmlObj->Activities) && isset($this->xmlObj->Activities->Activity)){
             foreach($this->xmlObj->Activities->Activity as $activity){

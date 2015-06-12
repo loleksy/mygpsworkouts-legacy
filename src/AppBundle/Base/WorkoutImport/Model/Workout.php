@@ -223,6 +223,10 @@ class Workout {
         $this->trackPoints[] = $trackPoint;
     }
 
+    public function clearTrackPoints(){
+        $this->trackPoints = array();
+    }
+
 
 
     public function getHeartRateValues(){

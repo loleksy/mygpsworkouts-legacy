@@ -28,7 +28,9 @@
 
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "phpunit/phpunit": "4.7.*",
+        "mockery/mockery": "0.9.*"
     },
     "scripts": {
         "post-root-package-install": [

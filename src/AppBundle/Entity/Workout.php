@@ -69,7 +69,7 @@ class Workout implements \JsonSerializable
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Sport", inversedBy="workouts")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="sport_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $sport;
@@ -81,7 +81,7 @@ class Workout implements \JsonSerializable
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="workouts")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     protected $user;
