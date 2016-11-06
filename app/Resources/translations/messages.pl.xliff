@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-06-12T11:47:24Z" source-language="en" target-language="pl" datatype="plaintext" original="not.available">
+  <file date="2016-11-06T13:23:24Z" source-language="en" target-language="pl" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="f6fdbe48dc54dd86f63097a03bd24094dedd713a" resname="Delete">
-        <jms:reference-file line="214">AppBundle/Controller/SportController.php</jms:reference-file>
-        <source>Delete</source>
-        <target>Usuń</target>
-      </trans-unit>
       <trans-unit id="cb38c7f90fbf9b787d1e651eff5b8e5e65f3df2f" resname="actionHeader">
         <jms:reference-file line="28">views/Sport/index.html.twig</jms:reference-file>
         <source>actionHeader</source>
@@ -196,12 +191,12 @@
         <target>Dyscypliny sportowe</target>
       </trans-unit>
       <trans-unit id="c2bf29a6b8471b8f4230aad566def9e5df69fede" resname="workout.fileImport.duplicateWorkout">
-        <jms:reference-file line="72">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
+        <jms:reference-file line="81">AppBundle/Service/WorkoutImportService.php</jms:reference-file>
         <source>workout.fileImport.duplicateWorkout</source>
         <target>Wykryto duplikat.</target>
       </trans-unit>
       <trans-unit id="c236ed7db78e21b96e7cafbe64043aed549ce2ec" resname="workout.fileImport.success">
-        <jms:reference-file line="64">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
+        <jms:reference-file line="87">AppBundle/Service/WorkoutImportService.php</jms:reference-file>
         <source>workout.fileImport.success</source>
         <target>Sukces</target>
       </trans-unit>
@@ -223,12 +218,18 @@
       <trans-unit id="c46d6aa9f898c9fe41eb632a2620a4f63db6d057" resname="workout.import.file.help">
         <jms:reference-file line="21">views/WorkoutImport/file.html.twig</jms:reference-file>
         <source>workout.import.file.help</source>
-        <target>Aktualnie obsługiwane są pliki TCX. TCX jest plikiem XML opracowanym przez Garmina. Tylko pliki generowane przez Endomondo zostały przetestowane. Pełna kompatybilność nie jest gwarantowana.</target>
+        <target>Aktualnie obsługiwane są pliki TCX oraz GPX. Tylko pliki generowane przez Endomondo zostały przetestowane. Pełna kompatybilność nie jest gwarantowana.</target>
       </trans-unit>
       <trans-unit id="3dc419f4c2c4e75ec009affed960fe40e9423291" resname="workout.import.file.invalidFile">
-        <jms:reference-file line="80">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
+        <jms:reference-file line="66">AppBundle/Service/WorkoutImportService.php</jms:reference-file>
+        <jms:reference-file line="75">AppBundle/Service/WorkoutImportService.php</jms:reference-file>
         <source>workout.import.file.invalidFile</source>
         <target>Niepoprawny plik</target>
+      </trans-unit>
+      <trans-unit id="a0eeb85a54a6d4fb44f0d03756724668be0d200d" resname="workout.import.file.notUploaded">
+        <jms:reference-file line="59">AppBundle/Service/WorkoutImportService.php</jms:reference-file>
+        <source>workout.import.file.notUploaded</source>
+        <target state="new">Nie wysłano</target>
       </trans-unit>
       <trans-unit id="a1462d86736788a57bdef54882f14fa64a614973" resname="workout.import.file.title">
         <jms:reference-file line="16">views/WorkoutImport/file.html.twig</jms:reference-file>
@@ -239,11 +240,6 @@
         <jms:reference-file line="43">views/WorkoutImport/file.html.twig</jms:reference-file>
         <source>workout.import.file.uploadMore</source>
         <target>Wyślij więcej</target>
-      </trans-unit>
-      <trans-unit id="ed7137c9b1bc962cecdc16e582a3f653a66b3128" resname="workout.import.tcx.notUploaded">
-        <jms:reference-file line="47">AppBundle/Controller/AjaxWorkoutController.php</jms:reference-file>
-        <source>workout.import.tcx.notUploaded</source>
-        <target>Nie wysłano</target>
       </trans-unit>
       <trans-unit id="7a6486ee298f0d84856c1e8f155f03fadc1fcb68" resname="workout.list.columns.action">
         <jms:reference-file line="25">views/Workout/index.html.twig</jms:reference-file>
@@ -304,11 +300,6 @@
         <jms:reference-file line="58">views/Workout/view.html.twig</jms:reference-file>
         <source>workout.view.summary.maximumHeartRate</source>
         <target>Maksymalne tętno</target>
-      </trans-unit>
-      <trans-unit id="77be3fdaf6315977a470386ed7e49b7b764dcdd7" resname="workout.view.title">
-        <jms:reference-file line="6">views/Workout/view.html.twig</jms:reference-file>
-        <source>workout.view.title</source>
-        <target>Trening</target>
       </trans-unit>
     </body>
   </file>
