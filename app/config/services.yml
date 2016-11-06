@@ -12,7 +12,7 @@ services:
         arguments: [ @router ]
     app.workout_import:
         class:  AppBundle\Service\WorkoutImportService
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager", "@translator", "@=service('security.token_storage').getToken().getUser()"]
     security.access.workout_voter:
             class:      AppBundle\Security\Authorization\Voter\WorkoutVoter
             public:     false

@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Base\WorkoutImport\DataReader\TcxParser;
+use AppBundle\Base\WorkoutImport\DataReader\GpxParser;
 use AppBundle\Service\WorkoutImportService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -40,52 +41,11 @@ class AjaxWorkoutController extends Controller
      */
     public function fileAjaxUploadAction(Request $request){
         $file = $request->files->get('file');
-        $responseData = array();
-        if(!$file){
-            $responseData[] = array(
-                'success' => false,
-                'message' =>  $this->get('translator')->trans('workout.import.tcx.notUploaded'),
-                'debug' => null,
-                'datetime' => null
-            );
-            return new JsonResponse($responseData);
-        }
-
-        $fileContent = file_get_contents($file->getPathName());
-        $tcxParser = new TcxParser(new \SimpleXMLElement($fileContent));
-        $workouts = $tcxParser->getWorkouts();
         $importService = $this->get('app.workout_import');
-        foreach($workouts as $workout) {
-            $importResult = $importService->importWorkout($workout, $this->getUser());
-            switch ($importResult) {
-                case WorkoutImportService::IMPORT_RESULT_SUCCESS:
-                    $responseData[] = array(
-                        'datetime' => $workout->getStartDateTime()->format('Y-m-d H:i:s'),
-                        'message' => $this->get('translator')->trans('workout.fileImport.success'),
-                        'debug' => null,
-                        'success' => true
-                    );
-                    break;
-                case WorkoutImportService::IMPORT_RESULT_DUPLICATE:
-                    $responseData[] = array(
-                        'datetime' => $workout->getStartDateTime()->format('Y-m-d H:i:s'),
-                        'message' => $this->get('translator')->trans('workout.fileImport.duplicateWorkout'),
-                        'debug' => null,
-                        'success' => false
-                    );
-                    break;
-                case WorkoutImportService::IMPORT_RESULT_INVALID:
-                    $responseData[] = array(
-                        'datetime' => $workout->getStartDateTime()->format('Y-m-d H:i:s'),
-                        'message' => $this->get('translator')->trans('workout.import.file.invalidFile'),
-                        'debug' => $importService->getLastValidationErrorMessage(),
-                        'success' => false,
-                    );
-                    break;
-            }
-        }
+        $output = $importService->importFile($file);
+
         $this->getDoctrine()->getManager()->flush();
-        return new JsonResponse($responseData);
+        return new JsonResponse($output);
     }
 
     /**
@@ -142,6 +102,4 @@ class AjaxWorkoutController extends Controller
         $results = $em->getRepository('AppBundle:Workout')->search($user, $startDt, $endDt, $sportIds);
         return new JsonResponse($results);
     }
-
-
 }
