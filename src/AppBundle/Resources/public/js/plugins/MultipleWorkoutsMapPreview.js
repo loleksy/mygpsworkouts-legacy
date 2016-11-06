@@ -68,8 +68,8 @@ myGpsWorkouts.plugins.MultipleWorkoutsMapPreview.prototype.onApplyButtonClicked 
 //fetch workouts list
 myGpsWorkouts.plugins.MultipleWorkoutsMapPreview.prototype.fetchWorkouts = function(startTs, endTs, sportIds){
     var params = {
-        'start_ts': startTs,
-        'end_ts': endTs,
+        'start_ts': startTs ? startTs : null,
+        'end_ts': endTs ? endTs : null,
         'sport_ids': sportIds.join(',')
     };
     var url = this.options.ajaxWorkoutsUrl + '?' + $.param(params);
