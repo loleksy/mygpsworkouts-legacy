@@ -82,7 +82,14 @@ class Workout {
      */
     public function getStartDateTime()
     {
-        return $this->startDateTime;
+        if ($this->startDateTime) {
+            return $this->startDateTime;
+        }
+
+        if ($this->trackPoints) {
+            return $this->trackPoints[0]->getDatetime();
+        }
+
     }
 
     /**
