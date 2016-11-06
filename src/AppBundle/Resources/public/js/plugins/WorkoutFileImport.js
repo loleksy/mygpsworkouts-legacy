@@ -160,10 +160,10 @@ myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneSuccess = function(f
         else{
             $label.html(result[i].message);
         }
-
-        $(file.previewElement.querySelector(".server-response-container")).append($label);
-        $(file.previewElement.querySelector(".spinner")).hide();
     }
+
+    $(file.previewElement.querySelector(".server-response-container")).append($label);
+    $(file.previewElement.querySelector(".spinner")).hide();
 }
 
 myGpsWorkouts.plugins.WorkoutFileImport.prototype.onDropzoneError = function(file, errorMessage, xhr){
