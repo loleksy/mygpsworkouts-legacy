@@ -117,7 +117,7 @@ class Workout {
                 $coord2 = new Coordinate((float)$this->trackPoints[$i]->getLat(),(float)$this->trackPoints[$i]->getLng());
                 $distance+=$calculator->getDistance($coord1, $coord2);
             }
-            return $distance;
+            return (int)$distance;
         }
 
     }
