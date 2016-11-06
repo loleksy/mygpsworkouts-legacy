@@ -12,3 +12,4 @@ parameters:
     mailer_user: null
     mailer_host: 127.0.0.1
     mailer_transport: smtp
+    gmaps_key: AIzaSyAMesOeUsx2FHMNQJTN172u4ww4Kp-12cw
